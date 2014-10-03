@@ -1,0 +1,12 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, "6.0"
+
+target "MobSurv" do
+pod 'ParseFacebookUtils', '~> 1.4'
+pod 'DLAlertView', '~> 1.2'
+end
+
+target "MobSurvTests" do
+
+end
+
