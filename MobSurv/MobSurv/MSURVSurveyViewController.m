@@ -103,6 +103,29 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
+// 4x4 View
+@property BOOL statusBtn7;
+@property BOOL statusBtn8;
+@property BOOL statusBtn9;
+@property BOOL statusBtn10;
+@property BOOL statusBtn11;
+@property BOOL statusBtn12;
+@property BOOL statusBtn13;
+@property BOOL statusBtn14;
+@property BOOL statusBtn15;
+@property BOOL statusBtn16;
+
+@property UIImage *image7;
+@property UIImage *image8;
+@property UIImage *image9;
+@property UIImage *image10;
+@property UIImage *image11;
+@property UIImage *image12;
+@property UIImage *image13;
+@property UIImage *image14;
+@property UIImage *image15;
+@property UIImage *image16;
+
 // Parse Logging
 - (void)LogParse:(NSInteger)step withNumberResponse:(NSInteger)aNumber andType:(NSInteger)aType;
 - (void)LogParse:(NSInteger)step withStringResponse:(NSString *)aString andType:(NSInteger)aType;
@@ -167,7 +190,8 @@
 
 - (void)LogParse:(NSInteger)step withNumberResponse:(NSInteger)aNumber andType:(NSInteger)aType {
 	PFObject *response = [PFObject objectWithClassName:@"Response"];
-	//response[@"user"] = [PFUser user].username;
+	response[@"user"] = g_username;
+	//LogDebug(@"~~~~~ The user is: %@", g_username);
 	response[@"surveyName"] = @"TIPI-Grid";
 	response[@"participant"] = @(g_participantNumber);
 	response[@"step"] = @(step);
@@ -180,7 +204,8 @@
 
 - (void)LogParse:(NSInteger)step withStringResponse:(NSString *)aString andType:(NSInteger)aType {
 	PFObject *response = [PFObject objectWithClassName:@"Response"];
-	//response[@"user"] = [PFUser user].username;
+	response[@"user"] = g_username;
+	//LogDebug(@"~~~~~ The user is: %@", g_username);
 	response[@"surveyName"] = @"TIPI-Grid";
 	response[@"participant"] = @(g_participantNumber);
 	response[@"step"] = @(step);
@@ -193,7 +218,8 @@
 
 - (void)LogParse:(NSInteger)step withBooleanResponse:(BOOL)aBool andType:(NSInteger)aType {
 	PFObject *response = [PFObject objectWithClassName:@"Response"];
-	//response[@"user"] = [PFUser user].username;
+	response[@"user"] = g_username;
+	//LogDebug(@"~~~~~ The user is: %@", g_username);
 	response[@"surveyName"] = @"TIPI-Grid";
 	response[@"participant"] = @(g_participantNumber);
 	response[@"step"] = @(step);
@@ -322,8 +348,8 @@
 
 	// Restore response
 	[self loadResponse];
-    if (self.currentQuestionType == 1 || self.currentQuestionType == 2 || self.currentQuestionType == 5)
-        [self updateSelectedStatusImage];
+	if (self.currentQuestionType == 1 || self.currentQuestionType == 2 || self.currentQuestionType == 5)
+		[self updateSelectedStatusImage];
 }
 
 - (IBAction)backButtonPressed:(id)sender {
@@ -360,8 +386,8 @@
 	[self playFile:@"55844__sergenious__pushbut2"];
 
 	[self loadResponse];
-    if (self.currentQuestionType == 1 || self.currentQuestionType == 2 || self.currentQuestionType == 5)
-        [self updateSelectedStatusImage];
+	if (self.currentQuestionType == 1 || self.currentQuestionType == 2 || self.currentQuestionType == 5)
+		[self updateSelectedStatusImage];
 }
 
 - (void)didReceiveMemoryWarning {

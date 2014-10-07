@@ -10,5 +10,6 @@
 #define MobSurv_globals_h
 
 unsigned g_participantNumber;
+NSString *g_username;
 
 #endif

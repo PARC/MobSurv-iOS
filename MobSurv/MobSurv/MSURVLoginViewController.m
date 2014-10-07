@@ -44,7 +44,11 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 
-	if (![PFUser currentUser]) { // No user logged in
+	LogDebug(@"MSURVLoginViewController::viewDidAppear");
+
+	if (![PFUser currentUser]) {
+		// No user logged in
+		LogDebug(@"No user logged in?");
 		[self.logInOutButton setTitle:@"Sign In" forState:UIControlStateNormal];
 
 		// Create the log in view controller
@@ -105,25 +109,41 @@
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
-	if (self.startStatus) {
-		[self playFile:@"Tiny Button Push-SoundBible.com-513260752"];
-		LogDebug(@"Starting the survey!");
-
-		g_participantNumber = [self.participantNumber.text intValue];
-
-		[self performSegueWithIdentifier:@"startSurvey" sender:self];
-	}
-	else {
-		LogDebug(@"Login failure message!");
+	if (![PFUser currentUser]) {
+		LogDebug(@"User not signed infailure message!");
 
 		NSString *alertTitle = @"Can't Start!";
-		NSString *alertMessage = @"Please enter a participant #";
+		NSString *alertMessage = @"Please log into system";
 		UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:alertTitle
 		                                                   message:alertMessage
 		                                                  delegate:self
 		                                         cancelButtonTitle:@"OK"
 		                                         otherButtonTitles:nil];
 		[theAlert show];
+	}
+	else {
+		if (self.startStatus) {
+			[self playFile:@"Tiny Button Push-SoundBible.com-513260752"];
+			LogDebug(@"Starting the survey!");
+
+			g_participantNumber = [self.participantNumber.text intValue];
+
+			LogDebug(@"Starting survey for user \'%@\'", [PFUser currentUser].username);
+			g_username = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
+			[self performSegueWithIdentifier:@"startSurvey" sender:self];
+		}
+		else {
+			LogDebug(@"Login failure message!");
+
+			NSString *alertTitle = @"Can't Start!";
+			NSString *alertMessage = @"Please enter a participant #";
+			UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:alertTitle
+			                                                   message:alertMessage
+			                                                  delegate:self
+			                                         cancelButtonTitle:@"OK"
+			                                         otherButtonTitles:nil];
+			[theAlert show];
+		}
 	}
 }
 
@@ -138,7 +158,7 @@
 }
 
 - (IBAction)enteredParticipantId:(id)sender {
-	if (!([self.participantNumber.text length] == 0)) {
+	if (!([self.participantNumber.text length] == 0 && [PFUser currentUser])) {
 		LogDebug(@"Setting start button background to GREEN!");
 		[[self.startButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
 		[self.startButton setBackgroundImage:[UIImage imageNamed:@"green.png"] forState:UIControlStateNormal];
@@ -181,17 +201,18 @@
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
 	[self dismissViewControllerAnimated:YES completion:NULL];
 	[self.logInOutButton setTitle:@"Sign Out" forState:UIControlStateNormal];
+	LogDebug(@"User is signed in...");
 }
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
-	NSLog(@"Failed to log in...");
+	LogDebug(@"Failed to log in...");
 	[self.logInOutButton setTitle:@"Sign In" forState:UIControlStateNormal];
 }
 
 // Sent to the delegate when the log in screen is dismissed.
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
-	NSLog(@"User dismissed the logInViewController");
+	LogDebug(@"User dismissed the logInViewController");
 	[self.logInOutButton setTitle:@"Sign In" forState:UIControlStateNormal];
 }
 
@@ -221,16 +242,17 @@
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
 	[self dismissViewControllerAnimated:YES completion:NULL];
+	LogDebug(@"User signed up...");
 }
 
 // Sent to the delegate when the sign up attempt fails.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
-	NSLog(@"Failed to sign up...");
+	LogDebug(@"Failed to sign up...");
 }
 
 // Sent to the delegate when the sign up screen is dismissed.
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
-	NSLog(@"User dismissed the signUpViewController");
+	LogDebug(@"User dismissed the signUpViewController");
 }
 
 /*
