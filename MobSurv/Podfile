@@ -4,6 +4,7 @@
 target "MobSurv" do
 pod 'ParseFacebookUtils', '~> 1.4'
 pod 'DLAlertView', '~> 1.2'
+pod 'UIImage-ResizeMagick', '~> 0.0'
 end
 
 target "MobSurvTests" do

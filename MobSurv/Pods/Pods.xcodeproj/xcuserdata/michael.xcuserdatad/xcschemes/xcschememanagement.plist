@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-MobSurv-UIImage-ResizeMagick.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MobSurv.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0D7F8D2EEACE471E9245CC75</key>
+		<key>35C72B507E4C4EC58D7273AB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6CF28D66E4DD47219BF161E6</key>
+		<key>38905D16551B4154BF4B2E2A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>92C0D93681D24DEB9650F148</key>
+		<key>8F5940EAB77B455DB62BF046</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B4A88466703846FF8E6A0A88</key>
+		<key>ABABFE01F9DF4130BAFE07D2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C975FE0962C8434593856F32</key>
+		<key>B503936BF6A04D01B2C798CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CDC865BBA1024475A571FFCD</key>
+		<key>F0D2E57676284CADBB4E073B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3197FC5C5624BB8816C6EBB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

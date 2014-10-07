@@ -8,10 +8,12 @@ PODS:
   - ParseFacebookUtils (1.4.1):
     - Facebook-iOS-SDK (~> 3.17.0)
     - Parse (~> 1.4.1)
+  - UIImage-ResizeMagick (0.0.1)
 
 DEPENDENCIES:
   - DLAlertView (~> 1.2)
   - ParseFacebookUtils (~> 1.4)
+  - UIImage-ResizeMagick (~> 0.0)
 
 SPEC CHECKSUMS:
   Bolts: 2635e8698a630774689441047f3465d78c48d485
@@ -19,5 +21,6 @@ SPEC CHECKSUMS:
   Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   Parse: db1a09c832b7509edcc88a65dc07229f5e578c73
   ParseFacebookUtils: 625da00d0f36a34e25ebae7f543385a0f19ccf1e
+  UIImage-ResizeMagick: 6edd4b95aabf4be264bf99147aa27abb319f3c7f
 
 COCOAPODS: 0.33.1

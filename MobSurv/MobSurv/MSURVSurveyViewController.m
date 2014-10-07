@@ -8,9 +8,14 @@
 
 #import "MSURVSurveyViewController.h"
 #import "Logging.h"
+#import "globals.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 #import <Parse/Parse.h>
+
+#import "DLAVAlertView.h"
+#import "UIImage+ResizeMagick.h"
+
 
 @interface MSURVSurveyViewController ()
 
@@ -54,6 +59,7 @@
 @property int maxQuestion;
 @property int keyCount;
 @property int imageCount;
+@property int currentQuestionType;
 
 // Grid View
 @property (weak, nonatomic) IBOutlet UILabel *firstText1;
@@ -71,6 +77,18 @@
 @property BOOL statusBtn5;
 @property BOOL statusBtn6;
 
+@property UIImage *image1;
+@property UIImage *image2;
+@property UIImage *image3;
+@property UIImage *image4;
+@property UIImage *image5;
+@property UIImage *image6;
+
+- (void)enlargeButtonImage;
+- (void)updateSelectedStatusImageFor:(UIButton *)button;
+
+@property NSMutableDictionary *responseDict;
+
 // Scroll View
 @property (weak, nonatomic) IBOutlet UILabel *firstText2;
 
@@ -84,6 +102,14 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+
+// Parse Logging
+- (void)LogParse:(NSInteger)step withNumberResponse:(NSInteger)aNumber andType:(NSInteger)aType;
+- (void)LogParse:(NSInteger)step withStringResponse:(NSString *)aString andType:(NSInteger)aType;
+- (void)LogParse:(NSInteger)step withBooleanResponse:(BOOL)aBool andType:(NSInteger)aType;
+
+- (void)saveResponse;
+- (void)loadResponse;
 
 @end
 
@@ -107,6 +133,7 @@
 	self.ImageDictionary = [[NSMutableDictionary alloc] init];
 	self.keyCount = 0;
 	self.imageCount = 0;
+	self.currentQuestionType = 0;
 
 	self.statusBtn1 = NO;
 	self.statusBtn2 = NO;
@@ -131,26 +158,153 @@
 	[self.gridButton6 addTarget:self action:@selector(multipleTap6:withEvent:) forControlEvents:UIControlEventTouchDownRepeat];
 
 	//[self.view addSubview:self.scrollView];
+
+	self.responseDict = [NSMutableDictionary dictionary];
+
+	// Parse Logging
+	[self LogParse:0 withStringResponse:@"Started survey" andType:0];
+}
+
+- (void)LogParse:(NSInteger)step withNumberResponse:(NSInteger)aNumber andType:(NSInteger)aType {
+	PFObject *response = [PFObject objectWithClassName:@"Response"];
+	//response[@"user"] = [PFUser user].username;
+	response[@"surveyName"] = @"TIPI-Grid";
+	response[@"participant"] = @(g_participantNumber);
+	response[@"step"] = @(step);
+	response[@"numberResponse"] = @(aNumber);
+	response[@"stringResponse"] = [NSNull null];
+	response[@"booleanResponse"] = [NSNull null];
+	response[@"type"] = @(aType);
+	[response saveInBackground];
+}
+
+- (void)LogParse:(NSInteger)step withStringResponse:(NSString *)aString andType:(NSInteger)aType {
+	PFObject *response = [PFObject objectWithClassName:@"Response"];
+	//response[@"user"] = [PFUser user].username;
+	response[@"surveyName"] = @"TIPI-Grid";
+	response[@"participant"] = @(g_participantNumber);
+	response[@"step"] = @(step);
+	response[@"numberResponse"] = [NSNull null];
+	response[@"stringResponse"] = aString;
+	response[@"booleanResponse"] = [NSNull null];
+	response[@"type"] = @(aType);
+	[response saveInBackground];
+}
+
+- (void)LogParse:(NSInteger)step withBooleanResponse:(BOOL)aBool andType:(NSInteger)aType {
+	PFObject *response = [PFObject objectWithClassName:@"Response"];
+	//response[@"user"] = [PFUser user].username;
+	response[@"surveyName"] = @"TIPI-Grid";
+	response[@"participant"] = @(g_participantNumber);
+	response[@"step"] = @(step);
+	response[@"numberResponse"] = [NSNull null];
+	response[@"stringResponse"] = [NSNull null];
+	response[@"booleanResponse"] = @(aBool);
+	response[@"type"] = @(aType);
+	[response saveInBackground];
+}
+
+- (void)saveResponse {
+	NSInteger selected = 0;
+	if (self.statusBtn1)
+		selected = 1;
+	else if (self.statusBtn2)
+		selected = 2;
+	else if (self.statusBtn3)
+		selected = 3;
+	else if (self.statusBtn4)
+		selected = 4;
+	else if (self.statusBtn5)
+		selected = 5;
+	else if (self.statusBtn6)
+		selected = 6;
+
+	[self.responseDict setObject:@(selected) forKey:@(self.question)];
+}
+
+- (void)loadResponse {
+	NSInteger selected = [[self.responseDict objectForKey:@(self.question)] integerValue];
+
+	switch (selected) {
+		case 1: self.statusBtn1 = YES;
+			break;
+
+		case 2: self.statusBtn2 = YES;
+			break;
+
+		case 3: self.statusBtn3 = YES;
+			break;
+
+		case 4: self.statusBtn4 = YES;
+			break;
+
+		case 5: self.statusBtn5 = YES;
+			break;
+
+		case 6: self.statusBtn6 = YES;
+			break;
+	}
 }
 
 - (IBAction)nextButtonPressed:(id)sender {
+	if (self.currentQuestionType == 1 || self.currentQuestionType == 2) {
+		if (!(self.statusBtn1 == YES || self.statusBtn2 == YES || self.statusBtn3 == YES ||
+		      self.statusBtn4 == YES || self.statusBtn5 == YES || self.statusBtn6 == YES)) {
+			// No selection has been made, need to answer
+			LogDebug(@"Need to select an answer before moving on!");
+
+			NSString *alertTitle = @"No answer?";
+			NSString *alertMessage = @"Please select one of the images that best answers the question.";
+			UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:alertTitle
+			                                                   message:alertMessage
+			                                                  delegate:self
+			                                         cancelButtonTitle:@"OK"
+			                                         otherButtonTitles:nil];
+			[theAlert show];
+			[self LogParse:self.question withStringResponse:@"Next failed" andType:400];
+			return;
+		}
+	}
+
 	if (self.question == self.maxQuestion) {
 		LogDebug(@"Survey complete.");
+		[self LogParse:self.question withStringResponse:@"Survey complete" andType:2];
 		[self performSegueWithIdentifier:@"backToStart" sender:self];
+
+		// Log entire responses
+		LogDebug(@"Dictionary:%@", self.responseDict);
+		NSString *recordedResponses = [NSString stringWithFormat:@"%@", self.responseDict];
+		[self LogParse:self.question withStringResponse:recordedResponses andType:5];
+
 		return;
 	}
+
+	// Record response
+	[self saveResponse];
+
+	[self LogParse:self.question withStringResponse:@"Next question" andType:1];
 
 	self.question += 1;
 
 	if (self.question >= self.maxQuestion)
 		self.question = self.maxQuestion;
 
+
+	// Clear status before switch
+	self.statusBtn1 = NO;
+	self.statusBtn2 = NO;
+	self.statusBtn3 = NO;
+	self.statusBtn4 = NO;
+	self.statusBtn5 = NO;
+	self.statusBtn6 = NO;
+	[self updateSelectedStatusImage];
+
+
 	LogDebug(@"Load question %d", self.question);
 
 	if ((self.question + 1) > self.maxQuestion) {
 		[self.nextButton setTitle:@"Leave Survey" forState:UIControlStateNormal];
-		[[self.nextButton imageView]
-		 setContentMode:UIViewContentModeScaleAspectFit];
+		[[self.nextButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
 		[self.nextButton setBackgroundImage:[UIImage imageNamed:@"green.png"]
 		                           forState:UIControlStateNormal];
 	}
@@ -165,13 +319,29 @@
 	LogDebug(@"Object [%d]: %@", (self.question - 1), question);
 	[self loadViewForType:question[@"type"] withObject:question];
 	[self playFile:@"55845__sergenious__pushbutn"];
+
+	// Restore response
+	[self loadResponse];
+    if (self.currentQuestionType == 1 || self.currentQuestionType == 2 || self.currentQuestionType == 5)
+        [self updateSelectedStatusImage];
 }
 
 - (IBAction)backButtonPressed:(id)sender {
+	[self LogParse:self.question withStringResponse:@"Back question" andType:1];
+	[self saveResponse];
+
 	self.question -= 1;
 
 	if (self.question <= 0)
 		self.question = 1;
+
+	// Clear status before switch
+	self.statusBtn1 = NO;
+	self.statusBtn2 = NO;
+	self.statusBtn3 = NO;
+	self.statusBtn4 = NO;
+	self.statusBtn5 = NO;
+	self.statusBtn6 = NO;
 
 	LogDebug(@"Load question %d", self.question);
 
@@ -188,6 +358,10 @@
 	LogDebug(@"Object [%d]: %@", (self.question - 1), question);
 	[self loadViewForType:question[@"type"] withObject:question];
 	[self playFile:@"55844__sergenious__pushbut2"];
+
+	[self loadResponse];
+    if (self.currentQuestionType == 1 || self.currentQuestionType == 2 || self.currentQuestionType == 5)
+        [self updateSelectedStatusImage];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -420,18 +594,26 @@
 	switch ([type intValue]) {
 		case 1:
 			[self displayGridFor:question];
+			[self LogParse:self.question withStringResponse:@"Loaded grid question" andType:1];
 			break;
 
 		case 2:
 			[self displayScrollFor:question];
+			[self LogParse:self.question withStringResponse:@"Loaded scroll question" andType:1];
 			break;
 
 		case 3:
 			[self displayInfoFor:question];
+			[self LogParse:self.question withStringResponse:@"Loaded display info" andType:1];
 			break;
 
 		case 4:
 			[self displayResultsSummaryFor:question];
+			[self LogParse:self.question withStringResponse:@"Loaded results summary" andType:1];
+			break;
+
+		case 5:
+			[self LogParse:self.question withStringResponse:@"Loaded 4x4 question" andType:1];
 			break;
 	}
 }
@@ -440,6 +622,8 @@
 	[[self.nextButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
 	[self.nextButton setBackgroundImage:[UIImage imageNamed:@"red.png"]
 	                           forState:UIControlStateNormal];
+
+	self.currentQuestionType = 1;
 
 	// Question
 	[self.view addSubview:self.gridView];
@@ -458,6 +642,7 @@
 	         setContentMode:UIViewContentModeScaleAspectFit];
 	        [self.gridButton1 setBackgroundImage:image
 	                                    forState:UIControlStateNormal];
+	        self.image1 = image;
 		}
 	    else {
 	        // Log details of the failure
@@ -478,6 +663,7 @@
 	         setContentMode:UIViewContentModeScaleAspectFit];
 	        [self.gridButton2 setBackgroundImage:image
 	                                    forState:UIControlStateNormal];
+	        self.image2 = image;
 		}
 	    else {
 	        // Log details of the failure
@@ -498,6 +684,7 @@
 	         setContentMode:UIViewContentModeScaleAspectFit];
 	        [self.gridButton3 setBackgroundImage:image
 	                                    forState:UIControlStateNormal];
+	        self.image3 = image;
 		}
 	    else {
 	        // Log details of the failure
@@ -518,6 +705,7 @@
 	         setContentMode:UIViewContentModeScaleAspectFit];
 	        [self.gridButton4 setBackgroundImage:image
 	                                    forState:UIControlStateNormal];
+	        self.image4 = image;
 		}
 	    else {
 	        // Log details of the failure
@@ -538,6 +726,7 @@
 	         setContentMode:UIViewContentModeScaleAspectFit];
 	        [self.gridButton5 setBackgroundImage:image
 	                                    forState:UIControlStateNormal];
+	        self.image5 = image;
 		}
 	    else {
 	        // Log details of the failure
@@ -556,20 +745,25 @@
 
 	        [[self.gridButton6 imageView]
 	         setContentMode:UIViewContentModeScaleAspectFit];
-	        [self.gridButton3 setBackgroundImage:image
+	        [self.gridButton6 setBackgroundImage:image
 	                                    forState:UIControlStateNormal];
+	        self.image6 = image;
 		}
 	    else {
 	        // Log details of the failure
 	        LogDebug(@"Error: %@ %@", error, [error userInfo]);
 		}
 	}];
+
+	// Restore state of this question if had been answered
 }
 
 - (void)displayScrollFor:(PFObject *)question {
 	[[self.nextButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
 	[self.nextButton setBackgroundImage:[UIImage imageNamed:@"red.png"]
 	                           forState:UIControlStateNormal];
+
+	self.currentQuestionType = 2;
 
 	[self.view addSubview:self.scrollView];
 	self.firstText2.text = question[@"firstText"];
@@ -579,6 +773,8 @@
 	[[self.nextButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
 	[self.nextButton setBackgroundImage:[UIImage imageNamed:@"red.png"]
 	                           forState:UIControlStateNormal];
+
+	self.currentQuestionType = 3;
 
 	[self.view addSubview:self.infoView];
 	self.firstText3.text = info[@"firstText"];
@@ -611,6 +807,8 @@
 	[[self.nextButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
 	[self.nextButton setBackgroundImage:[UIImage imageNamed:@"red.png"]
 	                           forState:UIControlStateNormal];
+
+	self.currentQuestionType = 4;
 
 	[self.view addSubview:self.summaryView];
 	self.firstText4.text = summary[@"firstText"];
@@ -648,12 +846,99 @@
    }
  */
 
+- (void)enlargeButtonImageFor:(UIImage *)anImage {
+	// Show Image in an Alert View
+	DLAVAlertView *alertView = [[DLAVAlertView alloc] initWithTitle:@"" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+	alertView.dismissesOnBackdropTap = YES;
+	UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 240.0, 240.0)];
+
+	[contentView setBackgroundColor:[UIColor colorWithPatternImage:[anImage resizedImageByMagick:@"240x240#"]]];
+	alertView.contentView = contentView;
+	[alertView showWithCompletion: ^(DLAVAlertView *alertView, NSInteger buttonIndex) {
+	    if (buttonIndex == -1) {
+	        LogDebug(@"Tapped backdrop!");
+		}
+	    else {
+	        LogDebug(@"Clicked button '%@' at index: %ld", [alertView buttonTitleAtIndex:buttonIndex], (long)buttonIndex);
+		}
+	}];
+}
+
+- (void)updateSelectedStatusImage {
+	UIImage *anImage = [[UIImage imageNamed:@"cornerCheck"] resizedImageByMagick:@"240x240#"];
+
+	if (self.statusBtn1 == NO) {
+		[self.gridButton1 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.gridButton1 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn2 == NO) {
+		[self.gridButton2 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.gridButton2 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn3 == NO) {
+		[self.gridButton3 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.gridButton3 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn4 == NO) {
+		[self.gridButton4 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.gridButton4 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn5 == NO) {
+		[self.gridButton5 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.gridButton5 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn6 == NO) {
+		[self.gridButton6 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.gridButton6 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (!(self.statusBtn1 == YES || self.statusBtn2 == YES || self.statusBtn3 == YES ||
+	      self.statusBtn4 == YES || self.statusBtn5 == YES || self.statusBtn6 == YES)) {
+		[self.nextButton setBackgroundImage:[UIImage imageNamed:@"red.png"]
+		                           forState:UIControlStateNormal];
+	}
+	else {
+		[self.nextButton setBackgroundImage:[UIImage imageNamed:@"green.png"]
+		                           forState:UIControlStateNormal];
+	}
+}
 
 //
 // Image 1 Handling...
 //
 - (IBAction)gridButton1Pressed:(id)sender {
 	LogDebug(@"Button 1 single tap.");
+	if (self.statusBtn1 == NO) {
+		self.statusBtn1 = YES;
+		self.statusBtn2 = NO;
+		self.statusBtn3 = NO;
+		self.statusBtn4 = NO;
+		self.statusBtn5 = NO;
+		self.statusBtn6 = NO;
+		[self LogParse:self.question withNumberResponse:1 andType:1];
+	}
+	else {
+		self.statusBtn1 = NO;
+		[self LogParse:self.question withNumberResponse:0 andType:1];
+	}
+	[self updateSelectedStatusImage];
 }
 
 - (IBAction)multipleTap1:(id)sender withEvent:(UIEvent *)event {
@@ -661,6 +946,7 @@
 	if (touch.tapCount == 2) {
 		// do action.
 		LogDebug(@"Button 1 DOUBLE tap!");
+		[self enlargeButtonImageFor:self.image1];
 	}
 }
 
@@ -669,6 +955,20 @@
 //
 - (IBAction)gridButton2Pressed:(id)sender {
 	LogDebug(@"Button 2 single tap.");
+	if (self.statusBtn2 == NO) {
+		self.statusBtn1 = NO;
+		self.statusBtn2 = YES;
+		self.statusBtn3 = NO;
+		self.statusBtn4 = NO;
+		self.statusBtn5 = NO;
+		self.statusBtn6 = NO;
+		[self LogParse:self.question withNumberResponse:2 andType:1];
+	}
+	else {
+		self.statusBtn2 = NO;
+		[self LogParse:self.question withNumberResponse:0 andType:1];
+	}
+	[self updateSelectedStatusImage];
 }
 
 - (IBAction)multipleTap2:(id)sender withEvent:(UIEvent *)event {
@@ -676,6 +976,7 @@
 	if (touch.tapCount == 2) {
 		// do action.
 		LogDebug(@"Button 2 DOUBLE tap!");
+		[self enlargeButtonImageFor:self.image2];
 	}
 }
 
@@ -684,6 +985,20 @@
 //
 - (IBAction)gridButton3Pressed:(id)sender {
 	LogDebug(@"Button 3 single tap.");
+	if (self.statusBtn3 == NO) {
+		self.statusBtn1 = NO;
+		self.statusBtn2 = NO;
+		self.statusBtn3 = YES;
+		self.statusBtn4 = NO;
+		self.statusBtn5 = NO;
+		self.statusBtn6 = NO;
+		[self LogParse:self.question withNumberResponse:3 andType:1];
+	}
+	else {
+		self.statusBtn3 = NO;
+		[self LogParse:self.question withNumberResponse:0 andType:1];
+	}
+	[self updateSelectedStatusImage];
 }
 
 - (IBAction)multipleTap3:(id)sender withEvent:(UIEvent *)event {
@@ -691,6 +1006,7 @@
 	if (touch.tapCount == 2) {
 		// do action.
 		LogDebug(@"Button 3 DOUBLE tap!");
+		[self enlargeButtonImageFor:self.image3];
 	}
 }
 
@@ -699,6 +1015,20 @@
 //
 - (IBAction)gridButton4Pressed:(id)sender {
 	LogDebug(@"Button 4 single tap.");
+	if (self.statusBtn4 == NO) {
+		self.statusBtn1 = NO;
+		self.statusBtn2 = NO;
+		self.statusBtn3 = NO;
+		self.statusBtn4 = YES;
+		self.statusBtn5 = NO;
+		self.statusBtn6 = NO;
+		[self LogParse:self.question withNumberResponse:4 andType:1];
+	}
+	else {
+		self.statusBtn4 = NO;
+		[self LogParse:self.question withNumberResponse:0 andType:1];
+	}
+	[self updateSelectedStatusImage];
 }
 
 - (IBAction)multipleTap4:(id)sender withEvent:(UIEvent *)event {
@@ -706,6 +1036,7 @@
 	if (touch.tapCount == 2) {
 		// do action.
 		LogDebug(@"Button 4 DOUBLE tap!");
+		[self enlargeButtonImageFor:self.image4];
 	}
 }
 
@@ -714,6 +1045,20 @@
 //
 - (IBAction)gridButton5Pressed:(id)sender {
 	LogDebug(@"Button 5 single tap.");
+	if (self.statusBtn5 == NO) {
+		self.statusBtn1 = NO;
+		self.statusBtn2 = NO;
+		self.statusBtn3 = NO;
+		self.statusBtn4 = NO;
+		self.statusBtn5 = YES;
+		self.statusBtn6 = NO;
+		[self LogParse:self.question withNumberResponse:5 andType:1];
+	}
+	else {
+		self.statusBtn5 = NO;
+		[self LogParse:self.question withNumberResponse:0 andType:1];
+	}
+	[self updateSelectedStatusImage];
 }
 
 - (IBAction)multipleTap5:(id)sender withEvent:(UIEvent *)event {
@@ -721,6 +1066,7 @@
 	if (touch.tapCount == 2) {
 		// do action.
 		LogDebug(@"Button 5 DOUBLE tap!");
+		[self enlargeButtonImageFor:self.image5];
 	}
 }
 
@@ -729,6 +1075,20 @@
 //
 - (IBAction)gridButton6Pressed:(id)sender {
 	LogDebug(@"Button 6 single tap.");
+	if (self.statusBtn6 == NO) {
+		self.statusBtn1 = NO;
+		self.statusBtn2 = NO;
+		self.statusBtn3 = NO;
+		self.statusBtn4 = NO;
+		self.statusBtn5 = NO;
+		self.statusBtn6 = YES;
+		[self LogParse:self.question withNumberResponse:6 andType:1];
+	}
+	else {
+		self.statusBtn6 = NO;
+		[self LogParse:self.question withNumberResponse:0 andType:1];
+	}
+	[self updateSelectedStatusImage];
 }
 
 - (IBAction)multipleTap6:(id)sender withEvent:(UIEvent *)event {
@@ -736,6 +1096,7 @@
 	if (touch.tapCount == 2) {
 		// do action.
 		LogDebug(@"Button 6 DOUBLE tap!");
+		[self enlargeButtonImageFor:self.image6];
 	}
 }
 

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C975FE0962C8434593856F32"
+               BlueprintIdentifier = "35C72B507E4C4EC58D7273AB"
                BuildableName = "libPods-MobSurv.a"
                BlueprintName = "Pods-MobSurv"
                ReferencedContainer = "container:Pods.xcodeproj">

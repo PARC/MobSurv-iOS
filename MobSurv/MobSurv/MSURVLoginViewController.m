@@ -8,6 +8,7 @@
 
 #import "MSURVLoginViewController.h"
 #import "Logging.h"
+#import "globals.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 #import <Parse/Parse.h>
@@ -107,6 +108,9 @@
 	if (self.startStatus) {
 		[self playFile:@"Tiny Button Push-SoundBible.com-513260752"];
 		LogDebug(@"Starting the survey!");
+
+		g_participantNumber = [self.participantNumber.text intValue];
+
 		[self performSegueWithIdentifier:@"startSurvey" sender:self];
 	}
 	else {
