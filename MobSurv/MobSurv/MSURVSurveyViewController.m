@@ -84,8 +84,8 @@
 @property UIImage *image5;
 @property UIImage *image6;
 
-- (void)enlargeButtonImage;
-- (void)updateSelectedStatusImageFor:(UIButton *)button;
+- (void)enlargeButtonImageFor:(UIImage *)anImage;
+- (void)updateSelectedStatusImage;
 
 @property NSMutableDictionary *responseDict;
 
