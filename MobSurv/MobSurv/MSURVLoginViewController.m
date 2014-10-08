@@ -46,7 +46,8 @@
 
 	LogDebug(@"MSURVLoginViewController::viewDidAppear");
 
-	if (![PFUser currentUser]) {
+	if (!g_loggedIn) { /*![PFUser currentUser])*/
+		g_loggedIn = YES;
 		// No user logged in
 		LogDebug(@"No user logged in?");
 		[self.logInOutButton setTitle:@"Sign In" forState:UIControlStateNormal];
@@ -77,9 +78,10 @@
 }
 
 - (IBAction)registerButtonPressed:(id)sender {
-	LogDebug(@"Logging out...");
+	LogDebug(@"Registration button pressed");
 
-	if (![PFUser currentUser]) { // No user logged in
+	if (!g_loggedIn) { /*![PFUser currentUser])*/   // No user logged in
+		g_loggedIn = YES;
 		LogDebug(@"Logging in...");
 		[self.logInOutButton setTitle:@"Sign In" forState:UIControlStateNormal];
 
@@ -103,13 +105,29 @@
 	}
 	else {
 		LogDebug(@"Logging out...");
-		//[PFUser logOut];
+		if (g_loggedIn) {
+			[PFUser logOut];
+			g_loggedIn = NO;
+		}
 		[self.logInOutButton setTitle:@"Sign In" forState:UIControlStateNormal];
+	}
+
+	if ([self.participantNumber.text length] > 0 && g_loggedIn) {
+		LogDebug(@"Setting start button background to GREEN!");
+		[[self.startButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
+		[self.startButton setBackgroundImage:[UIImage imageNamed:@"green.png"] forState:UIControlStateNormal];
+		self.startStatus = YES;
+	}
+	else {
+		LogDebug(@"Setting start button background to RED!");
+		[[self.startButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
+		[self.startButton setBackgroundImage:[UIImage imageNamed:@"red.png"] forState:UIControlStateNormal];
+		self.startStatus = NO;
 	}
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
-	if (![PFUser currentUser]) {
+	if (!g_loggedIn) { /* ![PFUser currentUser]) */
 		LogDebug(@"User not signed infailure message!");
 
 		NSString *alertTitle = @"Can't Start!";
@@ -158,7 +176,7 @@
 }
 
 - (IBAction)enteredParticipantId:(id)sender {
-	if (!([self.participantNumber.text length] == 0 && [PFUser currentUser])) {
+	if ([self.participantNumber.text length] > 0 && g_loggedIn) {
 		LogDebug(@"Setting start button background to GREEN!");
 		[[self.startButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
 		[self.startButton setBackgroundImage:[UIImage imageNamed:@"green.png"] forState:UIControlStateNormal];
@@ -202,18 +220,21 @@
 	[self dismissViewControllerAnimated:YES completion:NULL];
 	[self.logInOutButton setTitle:@"Sign Out" forState:UIControlStateNormal];
 	LogDebug(@"User is signed in...");
+    g_loggedIn = YES;
 }
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
 	LogDebug(@"Failed to log in...");
 	[self.logInOutButton setTitle:@"Sign In" forState:UIControlStateNormal];
+    g_loggedIn = NO;
 }
 
 // Sent to the delegate when the log in screen is dismissed.
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
 	LogDebug(@"User dismissed the logInViewController");
 	[self.logInOutButton setTitle:@"Sign In" forState:UIControlStateNormal];
+    g_loggedIn = NO;
 }
 
 #pragma mark - PFSignUpViewControllerDelegate
@@ -243,16 +264,19 @@
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
 	[self dismissViewControllerAnimated:YES completion:NULL];
 	LogDebug(@"User signed up...");
+    g_loggedIn = YES;
 }
 
 // Sent to the delegate when the sign up attempt fails.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
 	LogDebug(@"Failed to sign up...");
+    g_loggedIn = NO;
 }
 
 // Sent to the delegate when the sign up screen is dismissed.
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
 	LogDebug(@"User dismissed the signUpViewController");
+    g_loggedIn = NO;
 }
 
 /*

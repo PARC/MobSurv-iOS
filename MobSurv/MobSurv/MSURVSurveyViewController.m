@@ -199,7 +199,8 @@
 	response[@"stringResponse"] = [NSNull null];
 	response[@"booleanResponse"] = [NSNull null];
 	response[@"type"] = @(aType);
-	[response saveInBackground];
+    response[@"mediaTime"] = @(CACurrentMediaTime());
+	[response saveEventually];
 }
 
 - (void)LogParse:(NSInteger)step withStringResponse:(NSString *)aString andType:(NSInteger)aType {
@@ -213,7 +214,8 @@
 	response[@"stringResponse"] = aString;
 	response[@"booleanResponse"] = [NSNull null];
 	response[@"type"] = @(aType);
-	[response saveInBackground];
+    response[@"mediaTime"] = @(CACurrentMediaTime());
+	[response saveEventually];
 }
 
 - (void)LogParse:(NSInteger)step withBooleanResponse:(BOOL)aBool andType:(NSInteger)aType {
@@ -227,7 +229,8 @@
 	response[@"stringResponse"] = [NSNull null];
 	response[@"booleanResponse"] = @(aBool);
 	response[@"type"] = @(aType);
-	[response saveInBackground];
+    response[@"mediaTime"] = @(CACurrentMediaTime());
+	[response saveEventually];
 }
 
 - (void)saveResponse {
@@ -844,6 +847,7 @@
 }
 
 - (IBAction)infoImageButtonPressed:(id)sender {
+	[self LogParse:self.question withStringResponse:@"Pressed the info image" andType:1];
 	[self playFile:@"235167__reitanna__giggle2"];
 }
 
