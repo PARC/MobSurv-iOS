@@ -12,5 +12,6 @@
 unsigned g_participantNumber;
 NSString *g_username;
 BOOL g_loggedIn;
+NSString *g_surveyName;
 
 #endif

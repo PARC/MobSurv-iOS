@@ -223,6 +223,8 @@
 	NSString *surveyName = indexObject[@"name"];
 	LogDebug(@"### Button Pressed for Index %ld - %@", (long)indexPath.row, surveyName);
 
+	g_surveyName = surveyName;
+
 	LogDebug(@"Transitioning...");
 	[self performSegueWithIdentifier:@"startSurvey" sender:self];
 }
