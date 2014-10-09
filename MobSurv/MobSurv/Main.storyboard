@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="v8L-Za-pee">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -121,7 +120,7 @@
                         <outlet property="logInOutButton" destination="0ts-13-P5a" id="gRs-Bs-gKl"/>
                         <outlet property="participantNumber" destination="yRn-bf-EYR" id="gaP-87-HSn"/>
                         <outlet property="startButton" destination="kT0-Uq-GzJ" id="wKG-ko-PHQ"/>
-                        <segue destination="SM8-DF-egE" kind="modal" identifier="startSurvey" id="tPS-ei-Nfd"/>
+                        <segue destination="tOX-fG-2Bz" kind="modal" identifier="loginToSurveyList" id="T9q-3U-GPS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kKh-4g-wcs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -344,11 +343,12 @@
                         <outlet property="secondText3" destination="cR6-R4-xX4" id="aeP-gk-hQL"/>
                         <outlet property="summaryView" destination="Kqs-fs-P6d" id="fLe-hc-MZ7"/>
                         <segue destination="v8L-Za-pee" kind="modal" identifier="backToStart" id="Ooj-5t-SjN"/>
+                        <segue destination="tOX-fG-2Bz" kind="modal" identifier="surveyList" id="Oq9-JY-dnt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3p2-CL-lXF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1255" y="-394"/>
+            <point key="canvasLocation" x="1357" y="434"/>
         </scene>
         <!--Info-->
         <scene sceneID="IpA-cM-30x">
@@ -361,6 +361,15 @@
                     <view key="view" contentMode="scaleToFill" id="D3a-TO-uX6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hh6-eN-RVW">
+                                <rect key="frame" x="5" y="72" width="309" height="488"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">MobSurv                                                           Copyright © 2014 PARC, a Xerox company                                                                 Designed By                                                       Uriel Gomez                                            Whitney Lewis                                                 G. Michael Youngblood                                              Software Designed and Developed By            G. Michael Youngblood           </string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Info" id="t1D-qS-E8I">
@@ -382,7 +391,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4UO-gh-BrP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cTn-Mp-pah" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="119" y="318"/>
+            <point key="canvasLocation" x="-23" y="462"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gnU-jl-k1d">
@@ -419,7 +428,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBG-ZG-yUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-407" y="318"/>
+            <point key="canvasLocation" x="-407" y="462"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="crT-Ol-ica">
@@ -437,7 +446,62 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cPO-AH-LNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="683" y="-394"/>
+            <point key="canvasLocation" x="980" y="434"/>
+        </scene>
+        <!--Select a Survey-->
+        <scene sceneID="YbX-vV-LAg">
+            <objects>
+                <tableViewController id="eXJ-dI-aWg" customClass="MSURVSurveyListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GNe-X6-UwY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kPw-bw-8mi">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kPw-bw-8mi" id="538-Nn-XDn">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="eXJ-dI-aWg" id="l0G-dI-Iic"/>
+                            <outlet property="delegate" destination="eXJ-dI-aWg" id="JwP-xg-IIT"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Select a Survey" id="8sp-E4-s3X">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="vH1-hR-9av">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="eXJ-dI-aWg" id="a7O-Lk-MjJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="SM8-DF-egE" kind="modal" identifier="startSurvey" id="Ejd-kd-bOY"/>
+                        <segue destination="Sjx-kq-jua" kind="modal" identifier="loginScreen" id="eLc-LU-gHM"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SlN-w2-5JE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="980" y="-294"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ihN-KD-lSF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tOX-fG-2Bz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rL4-5v-ap1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eXJ-dI-aWg" kind="relationship" relationship="rootViewController" id="KdK-f0-0Ua"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C6m-w7-YRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="589" y="-294"/>
         </scene>
     </scenes>
     <resources>
@@ -452,4 +516,8 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="eLc-LU-gHM"/>
+        <segue reference="Oq9-JY-dnt"/>
+    </inferredMetricsTieBreakers>
 </document>

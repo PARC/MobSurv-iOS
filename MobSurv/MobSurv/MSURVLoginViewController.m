@@ -148,7 +148,7 @@
 
 			LogDebug(@"Starting survey for user \'%@\'", [PFUser currentUser].username);
 			g_username = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
-			[self performSegueWithIdentifier:@"startSurvey" sender:self];
+			[self performSegueWithIdentifier:@"loginToSurveyList" sender:self];
 		}
 		else {
 			LogDebug(@"Login failure message!");
@@ -220,21 +220,21 @@
 	[self dismissViewControllerAnimated:YES completion:NULL];
 	[self.logInOutButton setTitle:@"Sign Out" forState:UIControlStateNormal];
 	LogDebug(@"User is signed in...");
-    g_loggedIn = YES;
+	g_loggedIn = YES;
 }
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
 	LogDebug(@"Failed to log in...");
 	[self.logInOutButton setTitle:@"Sign In" forState:UIControlStateNormal];
-    g_loggedIn = NO;
+	g_loggedIn = NO;
 }
 
 // Sent to the delegate when the log in screen is dismissed.
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
 	LogDebug(@"User dismissed the logInViewController");
 	[self.logInOutButton setTitle:@"Sign In" forState:UIControlStateNormal];
-    g_loggedIn = NO;
+	g_loggedIn = NO;
 }
 
 #pragma mark - PFSignUpViewControllerDelegate
@@ -264,19 +264,19 @@
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
 	[self dismissViewControllerAnimated:YES completion:NULL];
 	LogDebug(@"User signed up...");
-    g_loggedIn = YES;
+	g_loggedIn = YES;
 }
 
 // Sent to the delegate when the sign up attempt fails.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
 	LogDebug(@"Failed to sign up...");
-    g_loggedIn = NO;
+	g_loggedIn = NO;
 }
 
 // Sent to the delegate when the sign up screen is dismissed.
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
 	LogDebug(@"User dismissed the signUpViewController");
-    g_loggedIn = NO;
+	g_loggedIn = NO;
 }
 
 /*

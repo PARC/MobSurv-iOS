@@ -24,7 +24,6 @@
 		4C1E24DB19A311F9006A12F7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1E24C319A311F9006A12F7 /* UIKit.framework */; };
 		4C1E24E319A311F9006A12F7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C1E24E119A311F9006A12F7 /* InfoPlist.strings */; };
 		4C1E24E519A311F9006A12F7 /* MobSurvTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E24E419A311F9006A12F7 /* MobSurvTests.m */; };
-		4C1E24EF19A320A8006A12F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C1E24EE19A320A8006A12F7 /* Main.storyboard */; };
 		4C1E24F119A32F37006A12F7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1E24F019A32F37006A12F7 /* Parse.framework */; };
 		4C1E24F419A33041006A12F7 /* MSURVLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E24F319A33041006A12F7 /* MSURVLoginViewController.m */; };
 		4C1E24FD19A333C8006A12F7 /* 740-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C1E24FB19A333C8006A12F7 /* 740-gear.png */; };
@@ -59,6 +58,8 @@
 		4C576FAC19E4444600571194 /* MobSurvAppLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C576FA819E4444600571194 /* MobSurvAppLogo@3x.png */; };
 		4C576FAD19E4444600571194 /* MobSurvSpotlightLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C576FA919E4444600571194 /* MobSurvSpotlightLogo@2x.png */; };
 		4C576FAE19E4444600571194 /* MobSurvSpotlightLogoi6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C576FAA19E4444600571194 /* MobSurvSpotlightLogoi6@2x.png */; };
+		4C576FB119E6D52900571194 /* MSURVSurveyListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C576FB019E6D52900571194 /* MSURVSurveyListTableViewController.m */; };
+		4C576FB519E6DBB800571194 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C576FB419E6DBB800571194 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +93,6 @@
 		4C1E24E019A311F9006A12F7 /* MobSurvTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobSurvTests-Info.plist"; sourceTree = "<group>"; };
 		4C1E24E219A311F9006A12F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C1E24E419A311F9006A12F7 /* MobSurvTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobSurvTests.m; sourceTree = "<group>"; };
-		4C1E24EE19A320A8006A12F7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4C1E24F019A32F37006A12F7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		4C1E24F219A33041006A12F7 /* MSURVLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURVLoginViewController.h; sourceTree = "<group>"; };
 		4C1E24F319A33041006A12F7 /* MSURVLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVLoginViewController.m; sourceTree = "<group>"; };
@@ -132,6 +132,9 @@
 		4C576FA819E4444600571194 /* MobSurvAppLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobSurvAppLogo@3x.png"; sourceTree = "<group>"; };
 		4C576FA919E4444600571194 /* MobSurvSpotlightLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobSurvSpotlightLogo@2x.png"; sourceTree = "<group>"; };
 		4C576FAA19E4444600571194 /* MobSurvSpotlightLogoi6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobSurvSpotlightLogoi6@2x.png"; sourceTree = "<group>"; };
+		4C576FAF19E6D52900571194 /* MSURVSurveyListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURVSurveyListTableViewController.h; sourceTree = "<group>"; };
+		4C576FB019E6D52900571194 /* MSURVSurveyListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVSurveyListTableViewController.m; sourceTree = "<group>"; };
+		4C576FB419E6DBB800571194 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7838225261D3402C95446EE9 /* Pods-MobSurv.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobSurv.xcconfig"; path = "Pods/Pods-MobSurv.xcconfig"; sourceTree = "<group>"; };
 		ECCD330B41C94361BDB0484F /* libPods-MobSurv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobSurv.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -238,8 +241,10 @@
 				4C1E252419A3F81E006A12F7 /* colors */,
 				4C1E24FA19A33257006A12F7 /* icons */,
 				4C1E24F519A33147006A12F7 /* graphics */,
-				4C1E24EE19A320A8006A12F7 /* Main.storyboard */,
+				4C576FB419E6DBB800571194 /* Main.storyboard */,
 				4C576FA519E3060B00571194 /* globals.h */,
+				4C576FAF19E6D52900571194 /* MSURVSurveyListTableViewController.h */,
+				4C576FB019E6D52900571194 /* MSURVSurveyListTableViewController.m */,
 				4C1E251F19A35054006A12F7 /* MSURVSurveyViewController.h */,
 				4C1E252019A35054006A12F7 /* MSURVSurveyViewController.m */,
 				4C1E250319A337EB006A12F7 /* MSURVInfoViewController.h */,
@@ -412,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C0D749D19A7C35300EE6F6A /* 235167__reitanna__giggle2.wav in Resources */,
+				4C576FB519E6DBB800571194 /* Main.storyboard in Resources */,
 				4C1E253519A3F8C0006A12F7 /* ThankYouScreenImage.png in Resources */,
 				4C1E253619A3F8C0006A12F7 /* WelcomeScreenImage.png in Resources */,
 				4C0D749F19A7E70F00EE6F6A /* 55845__sergenious__pushbutn.wav in Resources */,
@@ -424,7 +430,6 @@
 				4C576FAC19E4444600571194 /* MobSurvAppLogo@3x.png in Resources */,
 				4C576FA419DF4AD800571194 /* cornerCheck.png in Resources */,
 				4C576FAE19E4444600571194 /* MobSurvSpotlightLogoi6@2x.png in Resources */,
-				4C1E24EF19A320A8006A12F7 /* Main.storyboard in Resources */,
 				4C3D1E7519DF166000F88490 /* checkImage.png in Resources */,
 				4C1E253219A3F893006A12F7 /* red.png in Resources */,
 				4C1E24CA19A311F9006A12F7 /* InfoPlist.strings in Resources */,
@@ -488,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C1E250519A337EB006A12F7 /* MSURVInfoViewController.m in Sources */,
+				4C576FB119E6D52900571194 /* MSURVSurveyListTableViewController.m in Sources */,
 				4C1E24F419A33041006A12F7 /* MSURVLoginViewController.m in Sources */,
 				4C1E24D019A311F9006A12F7 /* MSURVAppDelegate.m in Sources */,
 				4C1E24CC19A311F9006A12F7 /* main.m in Sources */,

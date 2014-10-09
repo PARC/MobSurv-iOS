@@ -361,8 +361,14 @@
 
 	self.question -= 1;
 
-	if (self.question <= 0)
-		self.question = 1;
+    if (self.question <= 0) {
+        self.question = 1;
+        
+        // Warning to make sure that the user gives consent to trash all recorded responses
+        
+        
+        [self performSegueWithIdentifier:@"surveyList" sender:self];
+    }
 
 	// Clear status before switch
 	self.statusBtn1 = NO;
