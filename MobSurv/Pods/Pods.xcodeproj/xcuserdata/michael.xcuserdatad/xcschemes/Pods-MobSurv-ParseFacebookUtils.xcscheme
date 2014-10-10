@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B503936BF6A04D01B2C798CD"
+               BlueprintIdentifier = "A5AC8FFBD3834F7CB6123050"
                BuildableName = "libPods-MobSurv-ParseFacebookUtils.a"
                BlueprintName = "Pods-MobSurv-ParseFacebookUtils"
                ReferencedContainer = "container:Pods.xcodeproj">

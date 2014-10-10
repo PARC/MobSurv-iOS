@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "38905D16551B4154BF4B2E2A"
+               BlueprintIdentifier = "3FE08861C90840288FB86E26"
                BuildableName = "libPods-MobSurv-DLAlertView.a"
                BlueprintName = "Pods-MobSurv-DLAlertView"
                ReferencedContainer = "container:Pods.xcodeproj">
