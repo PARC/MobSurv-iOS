@@ -146,6 +146,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *fourByFourButton15;
 @property (weak, nonatomic) IBOutlet UIButton *fourByFourButton16;
 
+@property (weak, nonatomic) IBOutlet UIButton *fourByFourButton17;
+
 @property BOOL statusBtn7;
 @property BOOL statusBtn8;
 @property BOOL statusBtn9;
@@ -156,6 +158,7 @@
 @property BOOL statusBtn14;
 @property BOOL statusBtn15;
 @property BOOL statusBtn16;
+@property BOOL statusBtn17;
 
 @property UIImage *image7;
 @property UIImage *image8;
@@ -170,6 +173,10 @@
 
 - (void)load4x4Images;
 - (void)display4x4For:(PFObject *)info;
+- (void)updateSelectedFourByFourStatusImage;
+
+- (void)saveResponse4x4;
+- (void)loadResponse4x4;
 
 // Parse Logging
 - (void)LogParse:(NSInteger)step withNumberResponse:(NSInteger)aNumber andType:(NSInteger)aType;
@@ -222,6 +229,7 @@
 	self.statusBtn14 = NO;
 	self.statusBtn15 = NO;
 	self.statusBtn16 = NO;
+	self.statusBtn17 = NO;
 
 	// Need to select which version of the survey we are delivering
 
@@ -270,7 +278,7 @@
 	PFObject *response = [PFObject objectWithClassName:@"Response"];
 	response[@"user"] = g_username;
 	//LogDebug(@"~~~~~ The user is: %@", g_username);
-	response[@"surveyName"] = @"TIPI-Grid";
+	response[@"surveyName"] = g_surveyName;
 	response[@"participant"] = @(g_participantNumber);
 	response[@"step"] = @(step);
 	response[@"numberResponse"] = @(aNumber);
@@ -285,7 +293,7 @@
 	PFObject *response = [PFObject objectWithClassName:@"Response"];
 	response[@"user"] = g_username;
 	//LogDebug(@"~~~~~ The user is: %@", g_username);
-	response[@"surveyName"] = @"TIPI-Grid";
+	response[@"surveyName"] = g_surveyName;
 	response[@"participant"] = @(g_participantNumber);
 	response[@"step"] = @(step);
 	response[@"numberResponse"] = [NSNull null];
@@ -300,7 +308,7 @@
 	PFObject *response = [PFObject objectWithClassName:@"Response"];
 	response[@"user"] = g_username;
 	//LogDebug(@"~~~~~ The user is: %@", g_username);
-	response[@"surveyName"] = @"TIPI-Grid";
+	response[@"surveyName"] = g_surveyName;
 	response[@"participant"] = @(g_participantNumber);
 	response[@"step"] = @(step);
 	response[@"numberResponse"] = [NSNull null];
@@ -345,8 +353,138 @@
 		selected = 15;
 	else if (self.statusBtn16)
 		selected = 16;
+	else if (self.statusBtn17)
+		selected = 17;
 
 	[self.responseDict setObject:@(selected) forKey:@(self.question)];
+}
+
+- (void)saveResponse4x4 {
+	NSMutableArray *answer;
+	NSObject *obj = [self.responseDict objectForKey:@(self.question)];
+
+	if (obj == nil) {
+		answer = [[NSMutableArray alloc] init];
+	}
+	else {
+		answer = (NSMutableArray *)obj;
+	}
+
+
+	// Additions
+	//
+	if (self.statusBtn1 && ![answer containsObject:@(1)])
+		[answer addObject:@(1)];
+
+	if (self.statusBtn2 && ![answer containsObject:@(2)])
+		[answer addObject:@(2)];
+
+	if (self.statusBtn3 && ![answer containsObject:@(3)])
+		[answer addObject:@(3)];
+
+	if (self.statusBtn4 && ![answer containsObject:@(4)])
+		[answer addObject:@(4)];
+
+	if (self.statusBtn5 && ![answer containsObject:@(5)])
+		[answer addObject:@(5)];
+
+	if (self.statusBtn6 && ![answer containsObject:@(6)])
+		[answer addObject:@(6)];
+
+	if (self.statusBtn7 && ![answer containsObject:@(7)])
+		[answer addObject:@(7)];
+
+	if (self.statusBtn8 && ![answer containsObject:@(8)])
+		[answer addObject:@(8)];
+
+	if (self.statusBtn9 && ![answer containsObject:@(9)])
+		[answer addObject:@(9)];
+
+	if (self.statusBtn10 && ![answer containsObject:@(10)])
+		[answer addObject:@(10)];
+
+	if (self.statusBtn11 && ![answer containsObject:@(11)])
+		[answer addObject:@(11)];
+
+	if (self.statusBtn12 && ![answer containsObject:@(12)])
+		[answer addObject:@(12)];
+
+	if (self.statusBtn13 && ![answer containsObject:@(13)])
+		[answer addObject:@(13)];
+
+	if (self.statusBtn14 && ![answer containsObject:@(14)])
+		[answer addObject:@(14)];
+
+	if (self.statusBtn15 && ![answer containsObject:@(15)])
+		[answer addObject:@(15)];
+
+	if (self.statusBtn16 && ![answer containsObject:@(16)])
+		[answer addObject:@(16)];
+
+	if (self.statusBtn17) {
+		answer = [[NSMutableArray alloc] init];
+		[answer addObject:@(17)];
+	}
+
+	// Removals
+	//
+	if (!self.statusBtn1)
+		[answer removeObject:@(1)];
+
+	if (!self.statusBtn2)
+		[answer removeObject:@(2)];
+
+	if (!self.statusBtn3)
+		[answer removeObject:@(3)];
+
+	if (!self.statusBtn4)
+		[answer removeObject:@(4)];
+
+	if (!self.statusBtn5)
+		[answer removeObject:@(5)];
+
+	if (!self.statusBtn6)
+		[answer removeObject:@(6)];
+
+	if (!self.statusBtn7)
+		[answer removeObject:@(7)];
+
+	if (!self.statusBtn8)
+		[answer removeObject:@(8)];
+
+	if (!self.statusBtn9)
+		[answer removeObject:@(9)];
+
+	if (!self.statusBtn10)
+		[answer removeObject:@(10)];
+
+	if (!self.statusBtn11)
+		[answer removeObject:@(11)];
+
+	if (!self.statusBtn12)
+		[answer removeObject:@(12)];
+
+	if (!self.statusBtn13)
+		[answer removeObject:@(13)];
+
+	if (!self.statusBtn14)
+		[answer removeObject:@(14)];
+
+	if (!self.statusBtn15)
+		[answer removeObject:@(15)];
+
+	if (!self.statusBtn16)
+		[answer removeObject:@(16)];
+
+	if (!self.statusBtn17)
+		[answer removeObject:@(17)];
+
+	NSString *local = [NSString stringWithFormat:@"Saving %d: %@", self.question, answer];
+	LogDebug(@"Saving %d: %@", self.question, answer);
+
+	[self LogParse:self.question withStringResponse:local andType:1];
+
+	[self.responseDict setObject:answer forKey:@(self.question)];
 }
 
 - (void)loadResponse {
@@ -400,6 +538,76 @@
 
 		case 16: self.statusBtn16 = YES;
 			break;
+
+		case 17: self.statusBtn17 = YES;
+			break;
+	}
+}
+
+- (void)loadResponse4x4 {
+	NSMutableArray *selected = [self.responseDict objectForKey:@(self.question)];
+
+	if (selected == nil) {
+		return;
+	}
+
+	LogDebug(@"%d: %@", self.question, selected);
+
+	for (id item in selected) {
+		LogDebug(@"Focused on %@", item);
+		switch ([item intValue]) {
+			case 1: self.statusBtn1 = YES;
+				LogDebug(@"YES!!");
+				break;
+
+			case 2: self.statusBtn2 = YES;
+				break;
+
+			case 3: self.statusBtn3 = YES;
+				break;
+
+			case 4: self.statusBtn4 = YES;
+				break;
+
+			case 5: self.statusBtn5 = YES;
+				break;
+
+			case 6: self.statusBtn6 = YES;
+				break;
+
+			case 7: self.statusBtn7 = YES;
+				break;
+
+			case 8: self.statusBtn8 = YES;
+				break;
+
+			case 9: self.statusBtn9 = YES;
+				break;
+
+			case 10: self.statusBtn10 = YES;
+				break;
+
+			case 11: self.statusBtn11 = YES;
+				break;
+
+			case 12: self.statusBtn12 = YES;
+				break;
+
+			case 13: self.statusBtn13 = YES;
+				break;
+
+			case 14: self.statusBtn14 = YES;
+				break;
+
+			case 15: self.statusBtn15 = YES;
+				break;
+
+			case 16: self.statusBtn16 = YES;
+				break;
+
+			case 17: self.statusBtn17 = YES;
+				break;
+		}
 	}
 }
 
@@ -407,6 +615,29 @@
 	if (self.currentQuestionType == 1 || self.currentQuestionType == 2) {
 		if (!(self.statusBtn1 == YES || self.statusBtn2 == YES || self.statusBtn3 == YES ||
 		      self.statusBtn4 == YES || self.statusBtn5 == YES || self.statusBtn6 == YES)) {
+			// No selection has been made, need to answer
+			LogDebug(@"Need to select an answer before moving on!");
+
+			NSString *alertTitle = @"No answer?";
+			NSString *alertMessage = @"Please select one of the images that best answers the question.";
+			UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:alertTitle
+			                                                   message:alertMessage
+			                                                  delegate:self
+			                                         cancelButtonTitle:@"OK"
+			                                         otherButtonTitles:nil];
+			[theAlert show];
+			[self LogParse:self.question withStringResponse:@"Next failed" andType:400];
+			return;
+		}
+	}
+
+	if (self.currentQuestionType == 5) {
+		if (!(self.statusBtn1 == YES || self.statusBtn2 == YES || self.statusBtn3 == YES ||
+		      self.statusBtn4 == YES || self.statusBtn5 == YES || self.statusBtn6 == YES ||
+		      self.statusBtn7 == YES || self.statusBtn8 == YES || self.statusBtn9 == YES ||
+		      self.statusBtn10 == YES || self.statusBtn11 == YES || self.statusBtn12 == YES ||
+		      self.statusBtn13 == YES || self.statusBtn14 == YES || self.statusBtn15 == YES ||
+		      self.statusBtn16 == YES || self.statusBtn17 == YES)) {
 			// No selection has been made, need to answer
 			LogDebug(@"Need to select an answer before moving on!");
 
@@ -437,7 +668,12 @@
 	}
 
 	// Record response
-	[self saveResponse];
+	if (self.currentQuestionType == 1 || self.currentQuestionType == 2) {
+		[self saveResponse];
+	}
+	else if (self.currentQuestionType == 5) {
+		[self saveResponse4x4];
+	}
 
 	[self LogParse:self.question withStringResponse:@"Next question" andType:1];
 
@@ -464,8 +700,16 @@
 	self.statusBtn14 = NO;
 	self.statusBtn15 = NO;
 	self.statusBtn16 = NO;
-	[self updateSelectedStatusImage];
-	[self updateSelectedScrollStatusImage];
+	self.statusBtn17 = NO;
+	if (self.currentQuestionType == 1) {
+		[self updateSelectedStatusImage];
+	}
+	else if (self.currentQuestionType == 2) {
+		[self updateSelectedScrollStatusImage];
+	}
+	else if (self.currentQuestionType == 5) {
+		[self updateSelectedFourByFourStatusImage];
+	}
 
 	LogDebug(@"Load question %d", self.question);
 
@@ -488,21 +732,29 @@
 	[self playFile:@"55845__sergenious__pushbutn"];
 
 	// Restore response
-	[self loadResponse];
 	if (self.currentQuestionType == 1) {
+		[self loadResponse];
 		[self updateSelectedStatusImage];
 	}
 	else if (self.currentQuestionType == 2) {
+		[self loadResponse];
 		[self updateSelectedScrollStatusImage];
 	}
 	else if (self.currentQuestionType == 5) {
-		LogDebug(@"NEXT for 4x4");
+		[self loadResponse4x4];
+		[self updateSelectedFourByFourStatusImage];
 	}
 }
 
 - (IBAction)backButtonPressed:(id)sender {
 	[self LogParse:self.question withStringResponse:@"Back question" andType:1];
-	[self saveResponse];
+
+	if (self.currentQuestionType == 1 || self.currentQuestionType == 2) {
+		[self saveResponse];
+	}
+	else if (self.currentQuestionType == 5) {
+		[self saveResponse4x4];
+	}
 
 	self.question -= 1;
 
@@ -538,6 +790,7 @@
 	self.statusBtn14 = NO;
 	self.statusBtn15 = NO;
 	self.statusBtn16 = NO;
+	self.statusBtn17 = NO;
 	LogDebug(@"Load question %d", self.question);
 
 	NSString *buttonInfo =
@@ -554,15 +807,17 @@
 	[self loadViewForType:question[@"type"] withObject:question];
 	[self playFile:@"55844__sergenious__pushbut2"];
 
-	[self loadResponse];
 	if (self.currentQuestionType == 1) {
+		[self loadResponse];
 		[self updateSelectedStatusImage];
 	}
 	else if (self.currentQuestionType == 2) {
+		[self loadResponse];
 		[self updateSelectedScrollStatusImage];
 	}
 	else if (self.currentQuestionType == 5) {
-		LogDebug(@"BACK for 4x4");
+		[self loadResponse4x4];
+		[self updateSelectedFourByFourStatusImage];
 	}
 }
 
@@ -1281,7 +1536,7 @@
 	[query findObjectsInBackgroundWithBlock: ^(NSArray *objects, NSError *error) {
 	    if (!error) {
 	        // The find succeeded.
-	        LogDebug(@"Successfully retrieved %d image references.", objects.count);
+	        LogDebug(@"Successfully retrieved %lu image references.", (unsigned long)objects.count);
 	        // Do something with the found objects
 	        for (PFObject * object in objects) {
 	            LogDebug(@"%@", object.objectId);
@@ -1752,6 +2007,413 @@
 
 //********************************************* 4x4 question handling
 
+- (void)updateSelectedFourByFourStatusImage {
+	UIImage *anImage = [[UIImage imageNamed:@"cornerCheck"] resizedImageByMagick:@"65x65#"];
 
+	LogDebug(@"updateSelectedFourByFourStatusImage");
+
+	if (self.statusBtn1 == NO) {
+		[self.fourByFourButton1 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton1 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn2 == NO) {
+		[self.fourByFourButton2 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton2 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn3 == NO) {
+		[self.fourByFourButton3 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton3 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn4 == NO) {
+		[self.fourByFourButton4 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton4 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn5 == NO) {
+		[self.fourByFourButton5 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton5 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn6 == NO) {
+		[self.fourByFourButton6 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton6 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn7 == NO) {
+		[self.fourByFourButton7 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton7 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn8 == NO) {
+		[self.fourByFourButton8 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton8 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn9 == NO) {
+		[self.fourByFourButton9 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton9 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn10 == NO) {
+		[self.fourByFourButton10 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton10 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn11 == NO) {
+		[self.fourByFourButton11 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton11 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn12 == NO) {
+		[self.fourByFourButton12 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton12 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn13 == NO) {
+		[self.fourByFourButton13 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton13 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn14 == NO) {
+		[self.fourByFourButton14 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton14 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn15 == NO) {
+		[self.fourByFourButton15 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton15 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn16 == NO) {
+		[self.fourByFourButton16 setImage:nil forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton16 setImage:anImage forState:UIControlStateNormal];
+	}
+
+	if (self.statusBtn17 == NO) {
+		[self.fourByFourButton17 setTitleColor:[UIColor colorWithRed:0 / 255.0 green:0 / 255.0 blue:0 / 255.0 alpha:1.0] forState:UIControlStateNormal];
+	}
+	else {
+		[self.fourByFourButton17 setTitleColor:[UIColor colorWithRed:0 / 255.0 green:153 / 255.0 blue:0 / 255.0 alpha:1.0] forState:UIControlStateNormal];
+	}
+
+	if (!(self.statusBtn1 == YES || self.statusBtn2 == YES || self.statusBtn3 == YES ||
+	      self.statusBtn4 == YES || self.statusBtn5 == YES || self.statusBtn6 == YES ||
+	      self.statusBtn7 == YES || self.statusBtn8 == YES || self.statusBtn9 == YES ||
+	      self.statusBtn10 == YES || self.statusBtn11 == YES || self.statusBtn12 == YES ||
+	      self.statusBtn13 == YES || self.statusBtn14 == YES || self.statusBtn15 == YES ||
+	      self.statusBtn16 == YES || self.statusBtn17 == YES)) {
+		[self.nextButton setBackgroundImage:[UIImage imageNamed:@"red.png"]
+		                           forState:UIControlStateNormal];
+	}
+	else {
+		[self.nextButton setBackgroundImage:[UIImage imageNamed:@"green.png"]
+		                           forState:UIControlStateNormal];
+	}
+}
+
+- (IBAction)fourByFourButton1Pressed:(id)sender {
+	LogDebug(@"4x4 button 1 pressed.");
+	if (self.statusBtn1) {
+		self.statusBtn1 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 1 deselected" andType:1];
+	}
+	else {
+		self.statusBtn1 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 1 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton2Pressed:(id)sender {
+	LogDebug(@"4x4 button 2 pressed.");
+	if (self.statusBtn2) {
+		self.statusBtn2 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 2 deselected" andType:1];
+	}
+	else {
+		self.statusBtn2 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 2 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton3Pressed:(id)sender {
+	LogDebug(@"4x4 button 3 pressed.");
+	if (self.statusBtn3) {
+		self.statusBtn3 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 3 deselected" andType:1];
+	}
+	else {
+		self.statusBtn3 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 3 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton4Pressed:(id)sender {
+	LogDebug(@"4x4 button 4 pressed.");
+	if (self.statusBtn4) {
+		self.statusBtn4 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 4 deselected" andType:1];
+	}
+	else {
+		self.statusBtn4 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 4 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton5Pressed:(id)sender {
+	LogDebug(@"4x4 button 5 pressed.");
+	if (self.statusBtn5) {
+		self.statusBtn5 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 5 deselected" andType:1];
+	}
+	else {
+		self.statusBtn5 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 5 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton6Pressed:(id)sender {
+	LogDebug(@"4x4 button 6 pressed.");
+	if (self.statusBtn6) {
+		self.statusBtn6 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 6 deselected" andType:1];
+	}
+	else {
+		self.statusBtn6 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 6 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton7Pressed:(id)sender {
+	LogDebug(@"4x4 button 7 pressed.");
+	if (self.statusBtn7) {
+		self.statusBtn7 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 7 deselected" andType:1];
+	}
+	else {
+		self.statusBtn7 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 7 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton8Pressed:(id)sender {
+	LogDebug(@"4x4 button 8 pressed.");
+	if (self.statusBtn8) {
+		self.statusBtn8 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 8 deselected" andType:1];
+	}
+	else {
+		self.statusBtn8 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 8 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton9Pressed:(id)sender {
+	LogDebug(@"4x4 button 9 pressed.");
+	if (self.statusBtn9) {
+		self.statusBtn9 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 9 deselected" andType:1];
+	}
+	else {
+		self.statusBtn9 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 9 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton10Pressed:(id)sender {
+	LogDebug(@"4x4 button 10 pressed.");
+	if (self.statusBtn10) {
+		self.statusBtn10 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 10 deselected" andType:1];
+	}
+	else {
+		self.statusBtn10 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 10 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton11Pressed:(id)sender {
+	LogDebug(@"4x4 button 11 pressed.");
+	if (self.statusBtn11) {
+		self.statusBtn11 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 11 deselected" andType:1];
+	}
+	else {
+		self.statusBtn11 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 11 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton12Pressed:(id)sender {
+	LogDebug(@"4x4 button 12 pressed.");
+	if (self.statusBtn12) {
+		self.statusBtn12 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 12 deselected" andType:1];
+	}
+	else {
+		self.statusBtn12 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 12 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton13Pressed:(id)sender {
+	LogDebug(@"4x4 button 13 pressed.");
+	if (self.statusBtn13) {
+		self.statusBtn13 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 13 deselected" andType:1];
+	}
+	else {
+		self.statusBtn13 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 13 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton14Pressed:(id)sender {
+	LogDebug(@"4x4 button 14 pressed.");
+	if (self.statusBtn14) {
+		self.statusBtn14 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 14 deselected" andType:1];
+	}
+	else {
+		self.statusBtn14 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 14 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton15Pressed:(id)sender {
+	LogDebug(@"4x4 button 15 pressed.");
+	if (self.statusBtn15) {
+		self.statusBtn15 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 15 deselected" andType:1];
+	}
+	else {
+		self.statusBtn15 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 15 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)fourByFourButton16Pressed:(id)sender {
+	LogDebug(@"4x4 button 16 pressed.");
+	if (self.statusBtn16) {
+		self.statusBtn16 = NO;
+		[self LogParse:self.question withStringResponse:@"Button 16 deselected" andType:1];
+	}
+	else {
+		self.statusBtn16 = YES;
+		[self LogParse:self.question withStringResponse:@"Button 16 selected" andType:1];
+	}
+	self.statusBtn17 = NO;
+	[self updateSelectedFourByFourStatusImage];
+}
+
+- (IBAction)noneButtonPressed:(id)sender {
+	LogDebug(@"4x4 None Button Pressed");
+
+	if (self.statusBtn17) {
+		self.statusBtn1 = NO;
+		self.statusBtn2 = NO;
+		self.statusBtn3 = NO;
+		self.statusBtn4 = NO;
+		self.statusBtn5 = NO;
+		self.statusBtn6 = NO;
+		self.statusBtn7 = NO;
+		self.statusBtn8 = NO;
+		self.statusBtn9 = NO;
+		self.statusBtn10 = NO;
+		self.statusBtn11 = NO;
+		self.statusBtn12 = NO;
+		self.statusBtn13 = NO;
+		self.statusBtn14 = NO;
+		self.statusBtn15 = NO;
+		self.statusBtn16 = NO;
+		self.statusBtn17 = NO;
+		[self LogParse:self.question withStringResponse:@"Button NONE deselected" andType:1];
+	}
+	else {
+		self.statusBtn1 = NO;
+		self.statusBtn2 = NO;
+		self.statusBtn3 = NO;
+		self.statusBtn4 = NO;
+		self.statusBtn5 = NO;
+		self.statusBtn6 = NO;
+		self.statusBtn7 = NO;
+		self.statusBtn8 = NO;
+		self.statusBtn9 = NO;
+		self.statusBtn10 = NO;
+		self.statusBtn11 = NO;
+		self.statusBtn12 = NO;
+		self.statusBtn13 = NO;
+		self.statusBtn14 = NO;
+		self.statusBtn15 = NO;
+		self.statusBtn16 = NO;
+		self.statusBtn17 = YES;
+		[self LogParse:self.question withStringResponse:@"Button NONE selected" andType:1];
+	}
+	[self updateSelectedFourByFourStatusImage];
+}
 
 @end
