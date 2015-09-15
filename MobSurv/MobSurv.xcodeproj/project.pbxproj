@@ -60,7 +60,23 @@
 		4C576FAE19E4444600571194 /* MobSurvSpotlightLogoi6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C576FAA19E4444600571194 /* MobSurvSpotlightLogoi6@2x.png */; };
 		4C576FB119E6D52900571194 /* MSURVSurveyListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C576FB019E6D52900571194 /* MSURVSurveyListTableViewController.m */; };
 		4C576FB519E6DBB800571194 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C576FB419E6DBB800571194 /* Main.storyboard */; };
-		B70F2B701B94D6BE002388EE /* MSURVSurveyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70F2B6F1B94D6BE002388EE /* MSURVSurveyViewController.xib */; };
+		B71A3B601BA0D12900D85775 /* MSURVQuestionGrid6View.xib in Resources */ = {isa = PBXBuildFile; fileRef = B71A3B5F1BA0D12900D85775 /* MSURVQuestionGrid6View.xib */; };
+		B71A3B631BA0D29200D85775 /* MSURVQuestionGrid6View.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A3B621BA0D29200D85775 /* MSURVQuestionGrid6View.m */; };
+		B71A3B6B1BA0F05600D85775 /* MSURVParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A3B6A1BA0F05600D85775 /* MSURVParseHelper.m */; };
+		B71A3B721BA3F3FF00D85775 /* MSURVQuestionInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A3B711BA3F3FF00D85775 /* MSURVQuestionInfoView.m */; };
+		B71A3B741BA3F48000D85775 /* MSURVQuestionInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B71A3B731BA3F48000D85775 /* MSURVQuestionInfoView.xib */; };
+		B71A3B771BA4940800D85775 /* MSURVQuestionGrid4x4View.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A3B761BA4940800D85775 /* MSURVQuestionGrid4x4View.m */; };
+		B71A3B791BA4943B00D85775 /* MSURVQuestionGrid4x4View.xib in Resources */ = {isa = PBXBuildFile; fileRef = B71A3B781BA4943B00D85775 /* MSURVQuestionGrid4x4View.xib */; };
+		B71A3B7C1BA4949400D85775 /* MSURVQuestionScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A3B7B1BA4949400D85775 /* MSURVQuestionScrollView.m */; };
+		B71A3B7E1BA494C900D85775 /* MSURVQuestionScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B71A3B7D1BA494C900D85775 /* MSURVQuestionScrollView.xib */; };
+		B76C5CAC1BA530360025AF13 /* MSURVQuestionInfoCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B76C5CAB1BA530360025AF13 /* MSURVQuestionInfoCenterView.m */; };
+		B76C5CAE1BA5307E0025AF13 /* MSURVQuestionInfoCenterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B76C5CAD1BA5307E0025AF13 /* MSURVQuestionInfoCenterView.xib */; };
+		B76C5CB11BA530E60025AF13 /* MSURVQuestionInfoHTMLView.m in Sources */ = {isa = PBXBuildFile; fileRef = B76C5CB01BA530E60025AF13 /* MSURVQuestionInfoHTMLView.m */; };
+		B76C5CB31BA531120025AF13 /* MSURVQuestionInfoHTMLView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B76C5CB21BA531120025AF13 /* MSURVQuestionInfoHTMLView.xib */; };
+		B76C5CB61BA5314F0025AF13 /* MSURVQuestionGrid3View.m in Sources */ = {isa = PBXBuildFile; fileRef = B76C5CB51BA5314F0025AF13 /* MSURVQuestionGrid3View.m */; };
+		B76C5CB81BA531670025AF13 /* MSURVQuestionGrid3View.xib in Resources */ = {isa = PBXBuildFile; fileRef = B76C5CB71BA531670025AF13 /* MSURVQuestionGrid3View.xib */; };
+		B76C5CBB1BA531B50025AF13 /* MSURVQuestionText7OptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B76C5CBA1BA531B50025AF13 /* MSURVQuestionText7OptionView.m */; };
+		B76C5CBD1BA531C60025AF13 /* MSURVQuestionText7OptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B76C5CBC1BA531C60025AF13 /* MSURVQuestionText7OptionView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,7 +153,32 @@
 		4C576FB019E6D52900571194 /* MSURVSurveyListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVSurveyListTableViewController.m; sourceTree = "<group>"; };
 		4C576FB419E6DBB800571194 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7838225261D3402C95446EE9 /* Pods-MobSurv.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobSurv.xcconfig"; path = "Pods/Pods-MobSurv.xcconfig"; sourceTree = "<group>"; };
-		B70F2B6F1B94D6BE002388EE /* MSURVSurveyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSURVSurveyViewController.xib; sourceTree = "<group>"; };
+		B71A3B5F1BA0D12900D85775 /* MSURVQuestionGrid6View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSURVQuestionGrid6View.xib; sourceTree = "<group>"; };
+		B71A3B611BA0D29200D85775 /* MSURVQuestionGrid6View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURVQuestionGrid6View.h; sourceTree = "<group>"; };
+		B71A3B621BA0D29200D85775 /* MSURVQuestionGrid6View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVQuestionGrid6View.m; sourceTree = "<group>"; };
+		B71A3B691BA0F05600D85775 /* MSURVParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURVParseHelper.h; sourceTree = "<group>"; };
+		B71A3B6A1BA0F05600D85775 /* MSURVParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVParseHelper.m; sourceTree = "<group>"; };
+		B71A3B701BA3F3FF00D85775 /* MSURVQuestionInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURVQuestionInfoView.h; sourceTree = "<group>"; };
+		B71A3B711BA3F3FF00D85775 /* MSURVQuestionInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVQuestionInfoView.m; sourceTree = "<group>"; };
+		B71A3B731BA3F48000D85775 /* MSURVQuestionInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSURVQuestionInfoView.xib; sourceTree = "<group>"; };
+		B71A3B751BA4940800D85775 /* MSURVQuestionGrid4x4View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURVQuestionGrid4x4View.h; sourceTree = "<group>"; };
+		B71A3B761BA4940800D85775 /* MSURVQuestionGrid4x4View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVQuestionGrid4x4View.m; sourceTree = "<group>"; };
+		B71A3B781BA4943B00D85775 /* MSURVQuestionGrid4x4View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSURVQuestionGrid4x4View.xib; sourceTree = "<group>"; };
+		B71A3B7A1BA4949400D85775 /* MSURVQuestionScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURVQuestionScrollView.h; sourceTree = "<group>"; };
+		B71A3B7B1BA4949400D85775 /* MSURVQuestionScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVQuestionScrollView.m; sourceTree = "<group>"; };
+		B71A3B7D1BA494C900D85775 /* MSURVQuestionScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSURVQuestionScrollView.xib; sourceTree = "<group>"; };
+		B76C5CAA1BA530360025AF13 /* MSURVQuestionInfoCenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURVQuestionInfoCenterView.h; sourceTree = "<group>"; };
+		B76C5CAB1BA530360025AF13 /* MSURVQuestionInfoCenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVQuestionInfoCenterView.m; sourceTree = "<group>"; };
+		B76C5CAD1BA5307E0025AF13 /* MSURVQuestionInfoCenterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSURVQuestionInfoCenterView.xib; sourceTree = "<group>"; };
+		B76C5CAF1BA530E60025AF13 /* MSURVQuestionInfoHTMLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURVQuestionInfoHTMLView.h; sourceTree = "<group>"; };
+		B76C5CB01BA530E60025AF13 /* MSURVQuestionInfoHTMLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVQuestionInfoHTMLView.m; sourceTree = "<group>"; };
+		B76C5CB21BA531120025AF13 /* MSURVQuestionInfoHTMLView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSURVQuestionInfoHTMLView.xib; sourceTree = "<group>"; };
+		B76C5CB41BA5314F0025AF13 /* MSURVQuestionGrid3View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURVQuestionGrid3View.h; sourceTree = "<group>"; };
+		B76C5CB51BA5314F0025AF13 /* MSURVQuestionGrid3View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVQuestionGrid3View.m; sourceTree = "<group>"; };
+		B76C5CB71BA531670025AF13 /* MSURVQuestionGrid3View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSURVQuestionGrid3View.xib; sourceTree = "<group>"; };
+		B76C5CB91BA531B50025AF13 /* MSURVQuestionText7OptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURVQuestionText7OptionView.h; sourceTree = "<group>"; };
+		B76C5CBA1BA531B50025AF13 /* MSURVQuestionText7OptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVQuestionText7OptionView.m; sourceTree = "<group>"; };
+		B76C5CBC1BA531C60025AF13 /* MSURVQuestionText7OptionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSURVQuestionText7OptionView.xib; sourceTree = "<group>"; };
 		ECCD330B41C94361BDB0484F /* libPods-MobSurv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobSurv.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -243,20 +284,15 @@
 				4C1E252419A3F81E006A12F7 /* colors */,
 				4C1E24FA19A33257006A12F7 /* icons */,
 				4C1E24F519A33147006A12F7 /* graphics */,
-				4C576FB419E6DBB800571194 /* Main.storyboard */,
 				4C576FA519E3060B00571194 /* globals.h */,
-				4C576FAF19E6D52900571194 /* MSURVSurveyListTableViewController.h */,
-				4C576FB019E6D52900571194 /* MSURVSurveyListTableViewController.m */,
-				4C1E251F19A35054006A12F7 /* MSURVSurveyViewController.h */,
-				4C1E252019A35054006A12F7 /* MSURVSurveyViewController.m */,
-				B70F2B6F1B94D6BE002388EE /* MSURVSurveyViewController.xib */,
-				4C1E250319A337EB006A12F7 /* MSURVInfoViewController.h */,
-				4C1E250419A337EB006A12F7 /* MSURVInfoViewController.m */,
-				4C1E24F219A33041006A12F7 /* MSURVLoginViewController.h */,
-				4C1E24F319A33041006A12F7 /* MSURVLoginViewController.m */,
 				4C1E24CE19A311F9006A12F7 /* MSURVAppDelegate.h */,
 				4C1E24CF19A311F9006A12F7 /* MSURVAppDelegate.m */,
-				4C1E24D119A311F9006A12F7 /* Images.xcassets */,
+				4C576FB419E6DBB800571194 /* Main.storyboard */,
+				B71A3B671BA0D80E00D85775 /* Login */,
+				B71A3B661BA0D7EA00D85775 /* Study List */,
+				B71A3B651BA0D79000D85775 /* Survey View */,
+				B71A3B681BA0D82900D85775 /* App Info View */,
+				B71A3B6C1BA0F06100D85775 /* Parse Helper */,
 				4C1E24C619A311F9006A12F7 /* Supporting Files */,
 			);
 			path = MobSurv;
@@ -330,12 +366,146 @@
 		4C576FA619E4442700571194 /* App Icons */ = {
 			isa = PBXGroup;
 			children = (
+				4C1E24D119A311F9006A12F7 /* Images.xcassets */,
 				4C576FA719E4444600571194 /* MobSurvAppLogo@2x.png */,
 				4C576FA819E4444600571194 /* MobSurvAppLogo@3x.png */,
 				4C576FA919E4444600571194 /* MobSurvSpotlightLogo@2x.png */,
 				4C576FAA19E4444600571194 /* MobSurvSpotlightLogoi6@2x.png */,
 			);
 			name = "App Icons";
+			sourceTree = "<group>";
+		};
+		B71A3B641BA0D2A300D85775 /* Question Grid 6 (Type 1) */ = {
+			isa = PBXGroup;
+			children = (
+				B71A3B611BA0D29200D85775 /* MSURVQuestionGrid6View.h */,
+				B71A3B621BA0D29200D85775 /* MSURVQuestionGrid6View.m */,
+				B71A3B5F1BA0D12900D85775 /* MSURVQuestionGrid6View.xib */,
+			);
+			name = "Question Grid 6 (Type 1)";
+			sourceTree = "<group>";
+		};
+		B71A3B651BA0D79000D85775 /* Survey View */ = {
+			isa = PBXGroup;
+			children = (
+				4C1E251F19A35054006A12F7 /* MSURVSurveyViewController.h */,
+				4C1E252019A35054006A12F7 /* MSURVSurveyViewController.m */,
+				B71A3B641BA0D2A300D85775 /* Question Grid 6 (Type 1) */,
+				B71A3B6F1BA3F0A400D85775 /* Question Scroll (Type 2) */,
+				B71A3B6D1BA34E9A00D85775 /* Question Info (Type 3) */,
+				B76C5CA71BA501D20025AF13 /* Question Info Center (Type 4) */,
+				B71A3B6E1BA3F08600D85775 /* Question Grid 4x4 (Type 5) */,
+				B76C5CA61BA4FFFE0025AF13 /* Question Info HTML (Type 6) */,
+				B76C5CA81BA501F60025AF13 /* Question Grid 3 (Type 7) */,
+				B76C5CA91BA502200025AF13 /* Question Text 7 Option (Type 8) */,
+			);
+			name = "Survey View";
+			sourceTree = "<group>";
+		};
+		B71A3B661BA0D7EA00D85775 /* Study List */ = {
+			isa = PBXGroup;
+			children = (
+				4C576FAF19E6D52900571194 /* MSURVSurveyListTableViewController.h */,
+				4C576FB019E6D52900571194 /* MSURVSurveyListTableViewController.m */,
+			);
+			name = "Study List";
+			sourceTree = "<group>";
+		};
+		B71A3B671BA0D80E00D85775 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4C1E24F219A33041006A12F7 /* MSURVLoginViewController.h */,
+				4C1E24F319A33041006A12F7 /* MSURVLoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		B71A3B681BA0D82900D85775 /* App Info View */ = {
+			isa = PBXGroup;
+			children = (
+				4C1E250319A337EB006A12F7 /* MSURVInfoViewController.h */,
+				4C1E250419A337EB006A12F7 /* MSURVInfoViewController.m */,
+			);
+			name = "App Info View";
+			sourceTree = "<group>";
+		};
+		B71A3B6C1BA0F06100D85775 /* Parse Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B71A3B691BA0F05600D85775 /* MSURVParseHelper.h */,
+				B71A3B6A1BA0F05600D85775 /* MSURVParseHelper.m */,
+			);
+			name = "Parse Helper";
+			sourceTree = "<group>";
+		};
+		B71A3B6D1BA34E9A00D85775 /* Question Info (Type 3) */ = {
+			isa = PBXGroup;
+			children = (
+				B71A3B701BA3F3FF00D85775 /* MSURVQuestionInfoView.h */,
+				B71A3B711BA3F3FF00D85775 /* MSURVQuestionInfoView.m */,
+				B71A3B731BA3F48000D85775 /* MSURVQuestionInfoView.xib */,
+			);
+			name = "Question Info (Type 3)";
+			sourceTree = "<group>";
+		};
+		B71A3B6E1BA3F08600D85775 /* Question Grid 4x4 (Type 5) */ = {
+			isa = PBXGroup;
+			children = (
+				B71A3B751BA4940800D85775 /* MSURVQuestionGrid4x4View.h */,
+				B71A3B761BA4940800D85775 /* MSURVQuestionGrid4x4View.m */,
+				B71A3B781BA4943B00D85775 /* MSURVQuestionGrid4x4View.xib */,
+			);
+			name = "Question Grid 4x4 (Type 5)";
+			sourceTree = "<group>";
+		};
+		B71A3B6F1BA3F0A400D85775 /* Question Scroll (Type 2) */ = {
+			isa = PBXGroup;
+			children = (
+				B71A3B7A1BA4949400D85775 /* MSURVQuestionScrollView.h */,
+				B71A3B7B1BA4949400D85775 /* MSURVQuestionScrollView.m */,
+				B71A3B7D1BA494C900D85775 /* MSURVQuestionScrollView.xib */,
+			);
+			name = "Question Scroll (Type 2)";
+			sourceTree = "<group>";
+		};
+		B76C5CA61BA4FFFE0025AF13 /* Question Info HTML (Type 6) */ = {
+			isa = PBXGroup;
+			children = (
+				B76C5CAF1BA530E60025AF13 /* MSURVQuestionInfoHTMLView.h */,
+				B76C5CB01BA530E60025AF13 /* MSURVQuestionInfoHTMLView.m */,
+				B76C5CB21BA531120025AF13 /* MSURVQuestionInfoHTMLView.xib */,
+			);
+			name = "Question Info HTML (Type 6)";
+			sourceTree = "<group>";
+		};
+		B76C5CA71BA501D20025AF13 /* Question Info Center (Type 4) */ = {
+			isa = PBXGroup;
+			children = (
+				B76C5CAA1BA530360025AF13 /* MSURVQuestionInfoCenterView.h */,
+				B76C5CAB1BA530360025AF13 /* MSURVQuestionInfoCenterView.m */,
+				B76C5CAD1BA5307E0025AF13 /* MSURVQuestionInfoCenterView.xib */,
+			);
+			name = "Question Info Center (Type 4)";
+			sourceTree = "<group>";
+		};
+		B76C5CA81BA501F60025AF13 /* Question Grid 3 (Type 7) */ = {
+			isa = PBXGroup;
+			children = (
+				B76C5CB41BA5314F0025AF13 /* MSURVQuestionGrid3View.h */,
+				B76C5CB51BA5314F0025AF13 /* MSURVQuestionGrid3View.m */,
+				B76C5CB71BA531670025AF13 /* MSURVQuestionGrid3View.xib */,
+			);
+			name = "Question Grid 3 (Type 7)";
+			sourceTree = "<group>";
+		};
+		B76C5CA91BA502200025AF13 /* Question Text 7 Option (Type 8) */ = {
+			isa = PBXGroup;
+			children = (
+				B76C5CB91BA531B50025AF13 /* MSURVQuestionText7OptionView.h */,
+				B76C5CBA1BA531B50025AF13 /* MSURVQuestionText7OptionView.m */,
+				B76C5CBC1BA531C60025AF13 /* MSURVQuestionText7OptionView.xib */,
+			);
+			name = "Question Text 7 Option (Type 8)";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,26 +595,33 @@
 				4C1E253619A3F8C0006A12F7 /* WelcomeScreenImage.png in Resources */,
 				4C0D749F19A7E70F00EE6F6A /* 55845__sergenious__pushbutn.wav in Resources */,
 				4C1E253A19A40035006A12F7 /* 764-arrow-down@2x.png in Resources */,
+				B71A3B7E1BA494C900D85775 /* MSURVQuestionScrollView.xib in Resources */,
 				4C1E252F19A3F893006A12F7 /* blue.png in Resources */,
+				B71A3B791BA4943B00D85775 /* MSURVQuestionGrid4x4View.xib in Resources */,
 				4C1E253919A40035006A12F7 /* 764-arrow-down.png in Resources */,
-				B70F2B701B94D6BE002388EE /* MSURVSurveyViewController.xib in Resources */,
 				4C1E253019A3F893006A12F7 /* gray.png in Resources */,
 				4C576FAB19E4444600571194 /* MobSurvAppLogo@2x.png in Resources */,
 				4C0D74A119A7E78B00EE6F6A /* 55844__sergenious__pushbut2.wav in Resources */,
+				B71A3B741BA3F48000D85775 /* MSURVQuestionInfoView.xib in Resources */,
+				B76C5CB31BA531120025AF13 /* MSURVQuestionInfoHTMLView.xib in Resources */,
 				4C576FAC19E4444600571194 /* MobSurvAppLogo@3x.png in Resources */,
 				4C576FA419DF4AD800571194 /* cornerCheck.png in Resources */,
 				4C576FAE19E4444600571194 /* MobSurvSpotlightLogoi6@2x.png in Resources */,
 				4C3D1E7519DF166000F88490 /* checkImage.png in Resources */,
 				4C1E253219A3F893006A12F7 /* red.png in Resources */,
+				B76C5CB81BA531670025AF13 /* MSURVQuestionGrid3View.xib in Resources */,
 				4C1E24CA19A311F9006A12F7 /* InfoPlist.strings in Resources */,
 				4C1E24FD19A333C8006A12F7 /* 740-gear.png in Resources */,
 				4C1E250219A33591006A12F7 /* 724-info@2x.png in Resources */,
 				4C1E250119A33591006A12F7 /* 724-info.png in Resources */,
+				B76C5CBD1BA531C60025AF13 /* MSURVQuestionText7OptionView.xib in Resources */,
 				4C1E253119A3F893006A12F7 /* green.png in Resources */,
 				4C1E24D219A311F9006A12F7 /* Images.xcassets in Resources */,
 				4C576FAD19E4444600571194 /* MobSurvSpotlightLogo@2x.png in Resources */,
 				4C1E24FE19A333C8006A12F7 /* 740-gear@2x.png in Resources */,
+				B76C5CAE1BA5307E0025AF13 /* MSURVQuestionInfoCenterView.xib in Resources */,
 				4C0D74A519A83D7700EE6F6A /* Tiny Button Push-SoundBible.com-513260752.wav in Resources */,
+				B71A3B601BA0D12900D85775 /* MSURVQuestionGrid6View.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,12 +673,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B76C5CBB1BA531B50025AF13 /* MSURVQuestionText7OptionView.m in Sources */,
+				B76C5CB61BA5314F0025AF13 /* MSURVQuestionGrid3View.m in Sources */,
 				4C1E250519A337EB006A12F7 /* MSURVInfoViewController.m in Sources */,
 				4C576FB119E6D52900571194 /* MSURVSurveyListTableViewController.m in Sources */,
+				B71A3B7C1BA4949400D85775 /* MSURVQuestionScrollView.m in Sources */,
 				4C1E24F419A33041006A12F7 /* MSURVLoginViewController.m in Sources */,
 				4C1E24D019A311F9006A12F7 /* MSURVAppDelegate.m in Sources */,
+				B76C5CAC1BA530360025AF13 /* MSURVQuestionInfoCenterView.m in Sources */,
+				B76C5CB11BA530E60025AF13 /* MSURVQuestionInfoHTMLView.m in Sources */,
 				4C1E24CC19A311F9006A12F7 /* main.m in Sources */,
+				B71A3B721BA3F3FF00D85775 /* MSURVQuestionInfoView.m in Sources */,
+				B71A3B6B1BA0F05600D85775 /* MSURVParseHelper.m in Sources */,
+				B71A3B631BA0D29200D85775 /* MSURVQuestionGrid6View.m in Sources */,
 				4C1E252119A35054006A12F7 /* MSURVSurveyViewController.m in Sources */,
+				B71A3B771BA4940800D85775 /* MSURVQuestionGrid4x4View.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

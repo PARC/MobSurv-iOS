@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#include <AudioToolbox/AudioToolbox.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface MSURVSurveyViewController : UIViewController
 
+- (void)updateButtonValues:(NSArray*)fromArray;
+- (void)update17ButtonValues:(NSArray*)fromArray;
+- (void)update7ButtonValues:(NSArray*)fromArray;
+
+-(void)setNextButtonGreen;
+-(void)setNextButtonRed;
 
 @end

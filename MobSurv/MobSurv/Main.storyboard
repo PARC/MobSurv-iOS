@@ -8,7 +8,7 @@
         <!--Login View Controller-->
         <scene sceneID="J5a-al-JiN">
             <objects>
-                <viewController storyboardIdentifier="Login" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sjx-kq-jua" customClass="MSURVLoginViewController" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sjx-kq-jua" customClass="MSURVLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ivl-ON-uSg"/>
                         <viewControllerLayoutGuide type="bottom" id="Cne-qn-EAL"/>
@@ -128,6 +128,53 @@
             </objects>
             <point key="canvasLocation" x="119" y="-394"/>
         </scene>
+        <!--Survey View Controller-->
+        <scene sceneID="M7I-ig-CS9">
+            <objects>
+                <viewController id="gMY-FA-1VM" customClass="MSURVSurveyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9au-cJ-GOb"/>
+                        <viewControllerLayoutGuide type="bottom" id="cDJ-Nj-cjC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u9r-vp-yDU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3f-Xv-Wgm">
+                                <rect key="frame" x="124" y="520" width="176" height="38"/>
+                                <state key="normal" title="Next" backgroundImage="red.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="gMY-FA-1VM" eventType="touchUpInside" id="K0N-eZ-N2L"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Kz-K6-S9N">
+                                <rect key="frame" x="20" y="520" width="90" height="38"/>
+                                <state key="normal" title="Back" backgroundImage="gray.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="gMY-FA-1VM" eventType="touchUpInside" id="85E-Wg-zZy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.12941176470588234" green="0.33333333333333331" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5U8-Fo-DO2"/>
+                    <connections>
+                        <outlet property="backButton" destination="5Kz-K6-S9N" id="rXN-jE-gcT"/>
+                        <outlet property="nextButton" destination="u3f-Xv-Wgm" id="GGi-Zh-wL3"/>
+                        <segue destination="v8L-Za-pee" kind="modal" identifier="backToStart" id="Ooj-5t-SjN"/>
+                        <segue destination="tOX-fG-2Bz" kind="modal" identifier="surveyList" id="Oq9-JY-dnt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3p2-CL-lXF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1357" y="434"/>
+        </scene>
         <!--Info-->
         <scene sceneID="IpA-cM-30x">
             <objects>
@@ -174,7 +221,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gnU-jl-k1d">
             <objects>
-                <navigationController storyboardIdentifier="LoginView" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="v8L-Za-pee" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="v8L-Za-pee" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="STb-w4-lgk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -208,7 +255,25 @@
             </objects>
             <point key="canvasLocation" x="-407" y="462"/>
         </scene>
-        <!--Select a Survey-->
+        <!--Navigation Controller-->
+        <scene sceneID="crT-Ol-ica">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="SM8-DF-egE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jhl-w3-WOx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gMY-FA-1VM" kind="relationship" relationship="rootViewController" id="tNu-uK-raL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cPO-AH-LNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="980" y="434"/>
+        </scene>
+        <!--Select a Study-->
         <scene sceneID="YbX-vV-LAg">
             <objects>
                 <tableViewController id="eXJ-dI-aWg" customClass="MSURVSurveyListTableViewController" sceneMemberID="viewController">
@@ -229,7 +294,7 @@
                             <outlet property="delegate" destination="eXJ-dI-aWg" id="JwP-xg-IIT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select a Survey" id="8sp-E4-s3X">
+                    <navigationItem key="navigationItem" title="Select a Study" id="8sp-E4-s3X">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="vH1-hR-9av">
                             <connections>
                                 <action selector="backButtonPressed:" destination="eXJ-dI-aWg" id="a7O-Lk-MjJ"/>
@@ -237,6 +302,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <segue destination="SM8-DF-egE" kind="modal" identifier="startSurvey" id="Ejd-kd-bOY"/>
                         <segue destination="Sjx-kq-jua" kind="modal" identifier="loginScreen" id="eLc-LU-gHM"/>
                     </connections>
                 </tableViewController>
@@ -247,7 +313,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ihN-KD-lSF">
             <objects>
-                <navigationController storyboardIdentifier="ListView" automaticallyAdjustsScrollViewInsets="NO" id="tOX-fG-2Bz" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tOX-fG-2Bz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rL4-5v-ap1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -267,6 +333,7 @@
         <image name="724-info.png" width="28" height="28"/>
         <image name="764-arrow-down.png" width="28" height="14"/>
         <image name="WelcomeScreenImage.png" width="284" height="284"/>
+        <image name="gray.png" width="2" height="2"/>
         <image name="red.png" width="2" height="2"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -275,6 +342,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Y2e-KW-HDZ"/>
+        <segue reference="eLc-LU-gHM"/>
+        <segue reference="Oq9-JY-dnt"/>
     </inferredMetricsTieBreakers>
 </document>

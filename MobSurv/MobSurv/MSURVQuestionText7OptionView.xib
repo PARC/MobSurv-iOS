@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MSURVQuestionText7OptionView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-Vs-dc5">
+                    <rect key="frame" x="20" y="23" width="280" height="110"/>
+                    <color key="backgroundColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PwY-PB-aCa">
+                    <rect key="frame" x="20" y="137" width="280" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="gridButton1Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="IPX-VX-xsR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eb9-of-NYa">
+                    <rect key="frame" x="20" y="190" width="280" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="gridButton2Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="P9g-Nl-ADk"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2w-zB-9Rw">
+                    <rect key="frame" x="20" y="243" width="280" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="gridButton3Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="x68-aB-BQZ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWF-7j-VJf">
+                    <rect key="frame" x="20" y="295" width="280" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="gridButton4Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="P88-Uq-sok"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Itx-xu-peF">
+                    <rect key="frame" x="20" y="348" width="280" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="gridButton5Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="DgR-or-QKx"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8m-4d-83t">
+                    <rect key="frame" x="20" y="400" width="280" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="gridButton6Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="yHX-p9-iCj"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqH-wq-ffi">
+                    <rect key="frame" x="20" y="452" width="280" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="gridButton7Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="sWo-8y-s3h"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="firstText1" destination="f4g-Vs-dc5" id="bKw-za-hYO"/>
+                <outlet property="gridButton1" destination="PwY-PB-aCa" id="PNg-4K-OZ5"/>
+                <outlet property="gridButton2" destination="eb9-of-NYa" id="DOI-Cr-Z2f"/>
+                <outlet property="gridButton3" destination="I2w-zB-9Rw" id="Xav-YV-vjU"/>
+                <outlet property="gridButton4" destination="vWF-7j-VJf" id="94P-3K-GoI"/>
+                <outlet property="gridButton5" destination="Itx-xu-peF" id="Iyr-cn-rcU"/>
+                <outlet property="gridButton6" destination="u8m-4d-83t" id="eu5-Ze-ymY"/>
+                <outlet property="gridButton7" destination="IqH-wq-ffi" id="dg4-Q1-kZ2"/>
+            </connections>
+            <point key="canvasLocation" x="413" y="344"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

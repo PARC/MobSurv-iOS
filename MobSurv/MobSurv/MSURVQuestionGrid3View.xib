@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MSURVQuestionGrid3View">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="FCE-3r-UCu">
+                    <rect key="frame" x="20" y="24" width="280" height="110"/>
+                    <color key="backgroundColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckZ-TK-qAK">
+                    <rect key="frame" x="100" y="247" width="120" height="120"/>
+                    <color key="backgroundColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="gridButton3Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="bQG-SQ-1h5"/>
+                        <action selector="multipleTap3:withEvent:" destination="iN0-l3-epB" eventType="touchUpInside" id="tyN-9g-X0r"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bt-QY-arb">
+                    <rect key="frame" x="100" y="377" width="120" height="120"/>
+                    <color key="backgroundColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="gridButton5Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Asp-3h-A5y"/>
+                        <action selector="multipleTap5:withEvent:" destination="iN0-l3-epB" eventType="touchUpInside" id="Snk-LJ-IwR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKE-Rb-RsI">
+                    <rect key="frame" x="100" y="117" width="120" height="120"/>
+                    <color key="backgroundColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="gridButton1Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="gyM-La-VdW"/>
+                        <action selector="multipleTap1:withEvent:" destination="iN0-l3-epB" eventType="touchUpInside" id="1dg-iD-H3l"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.12941176469999999" green="0.33333333329999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="firstText1" destination="FCE-3r-UCu" id="ekF-cF-7MI"/>
+                <outlet property="gridButton1" destination="yKE-Rb-RsI" id="V0Z-He-mf1"/>
+                <outlet property="gridButton3" destination="ckZ-TK-qAK" id="L16-OZ-CFl"/>
+                <outlet property="gridButton5" destination="3bt-QY-arb" id="mRg-4x-k9O"/>
+            </connections>
+            <point key="canvasLocation" x="413" y="344"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
