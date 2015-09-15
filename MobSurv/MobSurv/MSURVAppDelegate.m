@@ -16,7 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	[Parse setApplicationId:@"G9fo4ZvpB4IUv51FJggmUEE8Et9BqZYlIse65sCq" clientKey:@"teq1GEMLq4tw1aJnjNZHwQeqYh24SKDGrwX32S1n"];
-
+  
 	//g_participantNumber = 0;
 	g_loggedIn = NO;
 

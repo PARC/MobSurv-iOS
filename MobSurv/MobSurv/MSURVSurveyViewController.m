@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 PARC. All rights reserved.
 //
 
+#import "MSURVAppDelegate.h"
 #import "MSURVSurveyViewController.h"
 #import "Logging.h"
 #import "globals.h"
@@ -49,11 +50,13 @@
 
 // Response Types
 // enum {Nada, Boolean Answer, Number Answer, String Answer, View Open, View
-// Next, View Back, SUmmary Response}
-
-@property (weak, nonatomic) IBOutlet UIView *gridView;
-@property (weak, nonatomic) IBOutlet UIView *scrollView;
-@property (weak, nonatomic) IBOutlet UIView *infoView;
+// Next, View Back, Summary Response}
+@property (strong, nonatomic) IBOutlet UINavigationController *navController;
+@property (strong, nonatomic) IBOutlet UIView *containerView;
+@property (strong, nonatomic) IBOutlet UIView *gridView;
+@property (strong, nonatomic) IBOutlet UIView *scrollView;
+@property (strong, nonatomic) IBOutlet UIView *infoView;
+// Next one not implemented
 @property (weak, nonatomic) IBOutlet UIView *summaryView;
 @property UIAlertView *alertView;
 
@@ -123,7 +126,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 // 4x4 View
-@property (weak, nonatomic) IBOutlet UIView *fourByFourSubView;
+@property (strong, nonatomic) IBOutlet UIView *denseGridView;
 @property (weak, nonatomic) IBOutlet UILabel *firstText5;
 
 @property (weak, nonatomic) IBOutlet UIButton *fourByFourButton1;
@@ -186,22 +189,34 @@
 - (void)saveResponse;
 - (void)loadResponse;
 
+@property UIStoryboard *storyBoard;
+@property UIViewController *initViewController;
+
 @end
 
 @implementation MSURVSurveyViewController
 
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil {
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	if (self) {
-	}
-	return self;
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+    }
+    return self;
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    NSLog(@"Passing all touches to the next view (if any), in the view stack.");
+    return NO;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    [[self view] setClipsToBounds:YES];
+    
+    [self.navController pushViewController:self animated:NO];
+    [self.view addSubview:self.containerView];
+    
+    self.storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
 
 	// Custom initialization
 	self.question = 0;
@@ -263,8 +278,6 @@
 	[self.scrollQuestions addSubview:self.scrollButton6];
 
 	[self.scrollQuestions setContentSize:CGSizeMake(290.0, 1800.0)];
-
-	//[self.view addSubview:self.scrollView];
 
 	self.responseDict = [NSMutableDictionary dictionary];
 
@@ -611,6 +624,13 @@
 	}
 }
 
+- (void)clearSubviews {
+    [self.infoView removeFromSuperview];
+    [self.gridView removeFromSuperview];
+    [self.scrollView removeFromSuperview];
+    [self.denseGridView removeFromSuperview];
+}
+
 - (IBAction)nextButtonPressed:(id)sender {
 	if (self.currentQuestionType == 1 || self.currentQuestionType == 2) {
 		if (!(self.statusBtn1 == YES || self.statusBtn2 == YES || self.statusBtn3 == YES ||
@@ -653,11 +673,20 @@
 			return;
 		}
 	}
+    
+    [self clearSubviews];
 
 	if (self.question == self.maxQuestion) {
 		LogDebug(@"Survey complete.");
 		[self LogParse:self.question withStringResponse:@"Survey complete" andType:2];
-		[self performSegueWithIdentifier:@"backToStart" sender:self];
+
+
+        
+        
+        self.initViewController = [self.storyBoard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navController pushViewController:self.initViewController animated:YES];
+        //[((MSURVAppDelegate *)[UIApplication sharedApplication].delegate).navigation pushViewController:self.initViewController animated:YES];
+		//[self performSegueWithIdentifier:@"backToStart" sender:self];
 
 		// Log entire responses
 		LogDebug(@"Dictionary:%@", self.responseDict);
@@ -773,6 +802,8 @@
 		[theAlert show];
 	}
 
+    [self clearSubviews];
+    
 	// Clear status before switch
 	self.statusBtn1 = NO;
 	self.statusBtn2 = NO;
@@ -829,7 +860,9 @@
 	else if (buttonIndex == 1) {
 		LogDebug(@"User opted to leave");
 		[self LogParse:self.question withStringResponse:@"Left survey" andType:400];
-		[self performSegueWithIdentifier:@"surveyList" sender:self];
+        self.initViewController = [self.storyBoard instantiateViewControllerWithIdentifier:@"ListView"];
+        [self.navigationController pushViewController:self.initViewController animated:YES];
+		//[self performSegueWithIdentifier:@"surveyList" sender:self];
 	}
 }
 
@@ -1071,26 +1104,31 @@
 - (void)loadViewForType:(NSNumber *)type withObject:(PFObject *)question {
 	switch ([type intValue]) {
 		case 1:
+            LogDebug(@"Loading a Grid Question");
 			[self displayGridFor:question];
 			[self LogParse:self.question withStringResponse:@"Loaded grid question" andType:1];
 			break;
 
 		case 2:
+            LogDebug(@"Loading a Scroll Question");
 			[self displayScrollFor:question];
 			[self LogParse:self.question withStringResponse:@"Loaded scroll question" andType:1];
 			break;
 
 		case 3:
+            LogDebug(@"Loading Display Info");
 			[self displayInfoFor:question];
 			[self LogParse:self.question withStringResponse:@"Loaded display info" andType:1];
 			break;
 
 		case 4:
+            LogDebug(@"Loading results summary");
 			[self displayResultsSummaryFor:question];
 			[self LogParse:self.question withStringResponse:@"Loaded results summary" andType:1];
 			break;
 
 		case 5:
+            LogDebug(@"Loading a 4x4 Question");
 			[self display4x4For:question];
 			[self LogParse:self.question withStringResponse:@"Loaded 4x4 question" andType:1];
 			break;
@@ -1105,6 +1143,7 @@
 	self.currentQuestionType = 1;
 
 	// Question
+    self.gridView.frame = CGRectMake(0.0, 0.0, 320.0, 500.0);
 	[self.view addSubview:self.gridView];
 	self.firstText1.text = question[@"firstText"];
 
@@ -1377,17 +1416,22 @@
 	}];
 
 	[self.scrollQuestions setContentOffset:CGPointMake(0, -self.scrollQuestions.contentInset.top) animated:YES];
+    
+    self.scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 500.0);
 	[self.view addSubview:self.scrollView];
+    
 	self.firstText2.text = question[@"firstText"];
 }
 
 - (void)displayInfoFor:(PFObject *)info {
+    LogDebug(@"Yes, I am trying to display some info...");
 	[[self.nextButton imageView] setContentMode:UIViewContentModeScaleAspectFit];
 	[self.nextButton setBackgroundImage:[UIImage imageNamed:@"red.png"]
 	                           forState:UIControlStateNormal];
 
 	self.currentQuestionType = 3;
 
+    self.infoView.frame = CGRectMake(0.0, 0.0, 320.0, 500.0);
 	[self.view addSubview:self.infoView];
 	self.firstText3.text = info[@"firstText"];
 
@@ -1422,11 +1466,9 @@
 
 	self.currentQuestionType = 4;
 
+    self.summaryView.frame = CGRectMake(0.0, 0.0, 320.0, 500.0);
 	[self.view addSubview:self.summaryView];
 	self.firstText4.text = summary[@"firstText"];
-
-	//[self.nextButton setBackgroundImage:[UIImage imageNamed:@"green.png"]
-	//forState:UIControlStateNormal];
 }
 
 - (void)loadIntoButton:(UIButton *)aButton anImage:(PFFile *)imageObject {
@@ -1525,6 +1567,11 @@
 	                           forState:UIControlStateNormal];
 
 	self.currentQuestionType = 5;
+    
+    // Question
+    self.denseGridView.frame = CGRectMake(0.0, 0.0, 320.0, 500.0);
+    [self.view addSubview:self.denseGridView];
+    self.firstText5.text = info[@"firstText"];
 
 	// Need to attach the 16 grid images to the buttons
 	NSString *objId = info.objectId;
@@ -1548,9 +1595,6 @@
 	        LogDebug(@"Error: %@ %@", error, [error userInfo]);
 		}
 	}];
-
-	[self.view addSubview:self.fourByFourSubView];
-	self.firstText5.text = info[@"firstText"];
 }
 
 - (IBAction)infoImageButtonPressed:(id)sender {

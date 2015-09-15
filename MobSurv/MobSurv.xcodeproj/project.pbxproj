@@ -60,6 +60,7 @@
 		4C576FAE19E4444600571194 /* MobSurvSpotlightLogoi6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C576FAA19E4444600571194 /* MobSurvSpotlightLogoi6@2x.png */; };
 		4C576FB119E6D52900571194 /* MSURVSurveyListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C576FB019E6D52900571194 /* MSURVSurveyListTableViewController.m */; };
 		4C576FB519E6DBB800571194 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C576FB419E6DBB800571194 /* Main.storyboard */; };
+		B70F2B701B94D6BE002388EE /* MSURVSurveyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70F2B6F1B94D6BE002388EE /* MSURVSurveyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,7 @@
 		4C576FB019E6D52900571194 /* MSURVSurveyListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURVSurveyListTableViewController.m; sourceTree = "<group>"; };
 		4C576FB419E6DBB800571194 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7838225261D3402C95446EE9 /* Pods-MobSurv.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobSurv.xcconfig"; path = "Pods/Pods-MobSurv.xcconfig"; sourceTree = "<group>"; };
+		B70F2B6F1B94D6BE002388EE /* MSURVSurveyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSURVSurveyViewController.xib; sourceTree = "<group>"; };
 		ECCD330B41C94361BDB0484F /* libPods-MobSurv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobSurv.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -247,6 +249,7 @@
 				4C576FB019E6D52900571194 /* MSURVSurveyListTableViewController.m */,
 				4C1E251F19A35054006A12F7 /* MSURVSurveyViewController.h */,
 				4C1E252019A35054006A12F7 /* MSURVSurveyViewController.m */,
+				B70F2B6F1B94D6BE002388EE /* MSURVSurveyViewController.xib */,
 				4C1E250319A337EB006A12F7 /* MSURVInfoViewController.h */,
 				4C1E250419A337EB006A12F7 /* MSURVInfoViewController.m */,
 				4C1E24F219A33041006A12F7 /* MSURVLoginViewController.h */,
@@ -424,6 +427,7 @@
 				4C1E253A19A40035006A12F7 /* 764-arrow-down@2x.png in Resources */,
 				4C1E252F19A3F893006A12F7 /* blue.png in Resources */,
 				4C1E253919A40035006A12F7 /* 764-arrow-down.png in Resources */,
+				B70F2B701B94D6BE002388EE /* MSURVSurveyViewController.xib in Resources */,
 				4C1E253019A3F893006A12F7 /* gray.png in Resources */,
 				4C576FAB19E4444600571194 /* MobSurvAppLogo@2x.png in Resources */,
 				4C0D74A119A7E78B00EE6F6A /* 55844__sergenious__pushbut2.wav in Resources */,

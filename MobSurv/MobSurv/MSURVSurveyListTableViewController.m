@@ -7,6 +7,7 @@
 //
 
 #import "MSURVSurveyListTableViewController.h"
+#import "MSURVSurveyViewController.h"
 #import "Logging.h"
 #import "globals.h"
 
@@ -226,7 +227,13 @@
 	g_surveyName = surveyName;
 
 	LogDebug(@"Transitioning...");
-	[self performSegueWithIdentifier:@"startSurvey" sender:self];
+    
+    MSURVSurveyViewController *viewController=[[MSURVSurveyViewController alloc]initWithNibName:@"MSURVSurveyViewController" bundle:nil];
+
+    [self presentViewController:viewController animated:YES completion:nil];
+    
+    
+	//[self performSegueWithIdentifier:@"startSurvey" sender:self];
 }
 
 @end
